@@ -1,716 +1,360 @@
 /**
- * PROJECT DATA — the single source of truth for the work section and case studies.
- * Replace or extend entries here; the UI renders whatever lives in this file.
- * Artwork is generative (see src/components/art.tsx) keyed by the art names below,
- * so real images/screens can later replace `heroArt`/`thumbArt` strings.
+ * PROJECT DATA — ported 1:1 from the Design Alchemy repository
+ * (github.com/Jennifer-source/design-alchemy — src/data/projects.ts).
+ * Images are the original repo assets, vendored into src/assets.
  */
+import fleetopsImg from "@/assets/work-fleetops.jpg";
+import mobileImg from "@/assets/work-mobile.jpg";
+import typoImg from "@/assets/work-typo.jpg";
+import labImg from "@/assets/work-lab.jpg";
+import belongImg from "@/assets/work-belong.jpg";
+
+export type Insight = { n: string; title: string; body: string };
+export type ProcessStep = { title: string; caption: string; learned: string };
 
 export type Project = {
   id: string;
-  number: string;
+  index: string;
   title: string;
   slug: string;
   year: string;
   category: string;
   description: string;
+  positioning: string;
   role: string;
   timeline: string;
-  tools: string[];
   team: string;
-  heroArt: string;
-  thumbArt: string;
-  overview: string;
-  challenge: {
-    context: string;
-    problem: string;
-    stats: { value: string; label: string; note: string }[];
-    quote: string;
-  };
-  research: {
-    approaches: { name: string; detail: string }[];
-    insights: { title: string; body: string }[];
-  };
-  define: {
-    statement: string;
-    hmws: string[];
-    principles: { title: string; body: string }[];
-    personas: { name: string; meta: string; goal: string; friction: string }[];
-  };
-  ideation: {
-    explorations: { caption: string; verdict: string; note: string }[];
-    rejections: { title: string; why: string; learned: string }[];
-  };
-  designSystem: {
-    intro: string;
-    type: { name: string; spec: string }[];
-    colors: { name: string; token: string; dark: boolean }[];
-    components: string[];
-    a11y: string[];
-  };
-  finalScreens: {
-    caption: string;
-    note: string;
-    variant: "fleet" | "meds" | "studio";
-    aspect: "wide" | "tall" | "square";
-  }[];
-  outcome: {
-    summary: string;
-    validations: { title: string; body: string }[];
-    limitations: string;
-    next: string[];
-  };
+  tools: string[];
+  heroImage: string;
+  thumbnail: string;
+  tone: "light" | "dark";
+  challenge: string;
+  context: string;
+  research: { method: string; detail: string }[];
+  insights: Insight[];
+  hmw: string[];
+  principles: { title: string; body: string }[];
+  process: ProcessStep[];
+  designSystem: { label: string; value: string }[];
+  finalScreens: { title: string; caption: string }[];
+  outcome: { label: string; body: string }[];
   reflection: string;
+  limitations: string;
+  nextSteps: string;
 };
 
 export const projects: Project[] = [
   {
     id: "fleetops",
-    number: "01",
+    index: "01",
     title: "FleetOps",
     slug: "fleetops",
     year: "2026",
-    category: "Product Design",
+    category: "UX Research / Product Design / UI Design",
     description:
       "Simplifying complex fleet operations into a clear decision-making system.",
-    role: "UX Research / Product Design / UI Design",
-    timeline: "12 weeks — 2026",
-    tools: ["Figma", "Maze", "Google Sheets", "After Effects"],
-    team: "Solo designer, mentored by an operations lead",
-    heroArt: "fleet",
-    thumbArt: "fleet",
-    overview:
-      "FleetOps is a concept product exploring how a logistics operator's morning changes when one screen answers “what matters now?” instead of showing everything at once.",
-    challenge: {
-      context:
-        "Small fleet operators run their business from spreadsheets, WhatsApp threads, and one overwhelmed dashboard. Dispatchers juggle vehicles, drivers, fuel, and maintenance with no single view of risk.",
-      problem:
-        "Operators don't struggle with information. They struggle with knowing what matters now — current tools show everything equally, so attention is rationed by luck.",
-      stats: [
-        {
-          value: "9 tools",
-          label: "checked before 8am",
-          note: "Reported across 5 dispatcher interviews",
-        },
-        {
-          value: "0",
-          label: "of them ranked by urgency",
-          note: "Every tool surfaces data, none surface priority",
-        },
-        {
-          value: "2×",
-          label: "time re-finding the same number",
-          note: "Observed during contextual inquiry sessions",
-        },
-      ],
-      quote:
-        "By the time I've checked everything, the day has already decided itself without me.",
-    },
-    research: {
-      approaches: [
-        {
-          name: "Contextual inquiry",
-          detail: "5 shadowing sessions with dispatchers during real morning shifts.",
-        },
-        {
-          name: "Interviews",
-          detail: "9 semi-structured interviews across operators, drivers, owners.",
-        },
-        {
-          name: "Competitive teardown",
-          detail: "6 fleet tools audited for information density and default views.",
-        },
-      ],
-      insights: [
-        {
-          title: "Users don't struggle with information. They struggle with knowing what matters now.",
-          body: "Every participant could find data eventually. What they lacked was a shared, trustworthy sense of order — what to act on first.",
-        },
-        {
-          title: "Complex dashboards create cognitive overload.",
-          body: "The average first screen showed 30+ data points. Participants described the feeling as “scanning a page of exam answers”.",
-        },
-        {
-          title: "Users need confidence before speed.",
-          body: "Dispatchers wouldn't act on a suggestion they couldn't verify in one step. Trust was the bottleneck, not latency.",
-        },
-      ],
-    },
-    define: {
-      statement:
-        "How might we give a fleet operator a trustworthy starting point for the day — one screen that says what matters now, and lets everything else wait its turn?",
-      hmws: [
-        "How might we rank the day before the operator has to?",
-        "How might we make every number verifiable in one step?",
-        "How might we let a glance carry the weight of a report?",
-      ],
-      principles: [
-        {
-          title: "Signal first",
-          body: "The screen opens on what changed and what's at risk. Everything else is one deliberate click away.",
-        },
-        {
-          title: "Verifiable by design",
-          body: "Every alert links to its source row. No black-box numbers — trust is a feature.",
-        },
-        {
-          title: "Calm under load",
-          body: "Color is reserved for risk. A quiet screen is a usable screen at 7am.",
-        },
-      ],
-      personas: [
-        {
-          name: "Amara, dispatcher",
-          meta: "Runs 40 vehicles, mornings only",
-          goal: "Leave for the yard knowing nothing will surprise her",
-          friction: "Checks nine tools; still misses one overdue inspection",
-        },
-        {
-          name: "Tunde, owner-operator",
-          meta: "5 trucks, does everything himself",
-          goal: "Spot a money problem before it becomes a breakdown",
-          friction: "Numbers live in his head and three notebooks",
-        },
-      ],
-    },
-    ideation: {
-      explorations: [
-        {
-          caption: "Sketch A — “The Wall”: every vehicle as an equal card",
-          verdict: "Rejected",
-          note: "Reproduced the dashboard problem at card scale. Equal cards still mean equal noise.",
-        },
-        {
-          caption: "Sketch B — “The Queue”: a ranked list of actions",
-          verdict: "Promising",
-          note: "Ranking felt right, but lists hide spatial context — where a truck is matters as much as what it needs.",
-        },
-        {
-          caption: "Sketch C — “The Morning Map”: ranked actions over a status map",
-          verdict: "Developed",
-          note: "Order plus geography. This direction became the final experience.",
-        },
-      ],
-      rejections: [
-        {
-          title: "A chat-style AI assistant",
-          why: "Testers loved the demo, then ignored it. Typing to a bot was slower than glancing at a ranked list.",
-          learned:
-            "Conversation is not always lower friction. For time-pressured work, glanceability beats dialogue.",
-        },
-        {
-          title: "Dark-mode-first “control room” aesthetic",
-          why: "Looked authoritative in mocks but read as alarming in daylight use.",
-          learned:
-            "Emotional tone is a usability variable. A calm surface outperforms an impressive one under stress.",
-        },
-      ],
-    },
-    designSystem: {
-      intro:
-        "A restrained system built for early mornings: one accent for risk, monochrome everything else, and typography that reads at arm's length.",
-      type: [
-        { name: "Display / numbers", spec: "Archivo Expanded · 800 · tracking −3.5%" },
-        { name: "Section titles", spec: "Archivo · 700 · uppercase" },
-        { name: "Data / labels", spec: "IBM Plex Mono · 400 · +14% tracking" },
-      ],
-      colors: [
-        { name: "Paper", token: "bg / cards", dark: false },
-        { name: "Ink", token: "text / structure", dark: true },
-        { name: "Signal", token: "risk · action · focus", dark: true },
-        { name: "Grid", token: "hairlines / dividers", dark: false },
-      ],
-      components: [
-        "Alert row — risk, source, one-tap verify",
-        "Status map — vehicles as live tiles",
-        "Queue card — ranked action with confidence score",
-        "Verify drawer — the receipt behind every number",
-      ],
-      a11y: [
-        "Signal red passes 4.6:1 on paper — safe for text",
-        "Color never carries meaning alone; each risk state pairs icon + label",
-        "All actions reachable by keyboard; focus ring uses the signal color",
-      ],
-    },
-    finalScreens: [
+    positioning:
+      "A control room for people who need to know what matters now — not everything at once.",
+    role: "Lead Product Designer (research, IA, UI, prototyping)",
+    timeline: "14 weeks · self-directed",
+    team: "Individual project, reviewed with two operations practitioners",
+    tools: ["Figma", "FigJam", "Maze", "React", "Motion"],
+    heroImage: fleetopsImg,
+    thumbnail: fleetopsImg,
+    tone: "dark",
+    challenge:
+      "Dispatchers monitor dozens of live vehicles across screens that were designed for data completeness rather than decisions. Critical exceptions get buried inside dense tables.",
+    context:
+      "Regional logistics operators running 40–200 vehicles, with dispatchers working 10-hour shifts and switching between four disconnected tools.",
+    research: [
+      { method: "Contextual interviews", detail: "6 dispatchers observed during live shifts" },
+      { method: "Task analysis", detail: "Mapped 3 recurring exception-handling flows end to end" },
+      { method: "Competitive teardown", detail: "5 fleet platforms audited on information hierarchy" },
+      { method: "Diary study", detail: "2 weeks of end-of-shift friction notes" },
+    ],
+    insights: [
       {
-        caption: "01 — The Morning Brief",
-        note: "Ranked actions replace the unsorted dashboard.",
-        variant: "fleet",
-        aspect: "wide",
+        n: "01",
+        title: "Users don't struggle with information.",
+        body: "They struggle with knowing what matters now. Everything on screen carried the same visual weight, so priority became a memory task.",
       },
       {
-        caption: "02 — Verify drawer",
-        note: "Every number opens its receipt in one tap.",
-        variant: "fleet",
-        aspect: "square",
+        n: "02",
+        title: "Complex dashboards create cognitive overload.",
+        body: "Dispatchers rebuilt the same mental filter dozens of times per shift because the interface never remembered their intent.",
       },
       {
-        caption: "03 — Status map",
-        note: "Where things are, and what they need, at a glance.",
-        variant: "fleet",
-        aspect: "wide",
+        n: "03",
+        title: "Users need confidence before speed.",
+        body: "Every fast action was undone by a slow second-guess: people re-opened records to confirm what they had just done.",
+      },
+      {
+        n: "04",
+        title: "Exceptions are the real product.",
+        body: "Routine trips need no interface at all. The value lives entirely in the 4% of events that break the plan.",
       },
     ],
-    outcome: {
-      summary:
-        "Concept stage, tested as a clickable prototype with the same dispatchers from research.",
-      validations: [
-        {
-          title: "Expected outcome",
-          body: "Dispatchers find the day's first action without scanning — measured by first-click success in tests.",
-        },
-        {
-          title: "Usability signal",
-          body: "5 of 5 testers completed the “plan my morning” task unaided on the second iteration.",
-        },
-        {
-          title: "Validated decisions",
-          body: "Ranked queue over equal cards; verify drawer over tooltips. Both chosen by testers, not by taste.",
-        },
-      ],
-      limitations:
-        "This is a concept validated on prototype, not in production. No business metrics exist yet, and none are claimed. Testers were from two depots in one city.",
-      next: [
-        "Pilot with one depot's live data",
-        "Test the confidence model with edge-case vehicles",
-        "Explore driver-side counterpart experience",
-      ],
-    },
+    hmw: [
+      "How might we surface the smallest set of events that actually require a human decision?",
+      "How might we let dispatchers act without losing the context they built up?",
+      "How might we make an action feel confirmed without a second confirmation screen?",
+    ],
+    principles: [
+      { title: "Priority is a design decision", body: "The interface, not the operator, carries the ranking logic." },
+      { title: "Context travels with the task", body: "Acting on an event never costs you your place." },
+      { title: "Calm by default", body: "Colour and motion are reserved for state change only." },
+      { title: "Legible under pressure", body: "Readable at arm's length, on a dim shift, at hour nine." },
+    ],
+    process: [
+      {
+        title: "Sketch round 01 — the mega-dashboard",
+        caption: "Nine live modules on a single canvas, everything visible at once.",
+        learned:
+          "Why this didn't work: it optimised for the manager's overview, not the dispatcher's decision. Density replaced hierarchy.",
+      },
+      {
+        title: "Sketch round 02 — the queue",
+        caption: "A single prioritised stream of exceptions with inline actions.",
+        learned:
+          "What changed: the map became supporting evidence instead of the main object. Time-to-first-action dropped in the walkthrough.",
+      },
+      {
+        title: "Wireframe round 03 — split focus",
+        caption: "Queue on the left, live context panel on the right, persistent state.",
+        learned:
+          "What I learned: people trust a system that keeps their place. Preserving scroll and filter state removed most re-checking behaviour.",
+      },
+      {
+        title: "Prototype round 04 — motion as explanation",
+        caption: "Resolved items animate out of the queue into a collapsed history rail.",
+        learned:
+          "Motion earned its place here: it explains where the item went, which removed the need for a confirmation toast.",
+      },
+    ],
+    designSystem: [
+      { label: "Type", value: "Archivo — 4 sizes, 2 weights, tabular numerals for all data" },
+      { label: "Colour", value: "Neutral base, single vermilion accent reserved for state change" },
+      { label: "Spacing", value: "4pt base scale, 8pt rhythm for layout blocks" },
+      { label: "Grid", value: "12 columns, 24px gutters, fixed rail widths" },
+      { label: "Components", value: "Event row, context panel, action bar, status pill, filter chip" },
+      { label: "States", value: "Every component specified for idle, hover, focus, loading, error, empty" },
+      { label: "Accessibility", value: "AA contrast minimum, full keyboard queue traversal, no colour-only status" },
+    ],
+    finalScreens: [
+      { title: "Exception queue", caption: "Priority-ranked stream with inline resolution." },
+      { title: "Live context", caption: "Vehicle, route and history in one uninterrupted panel." },
+      { title: "Shift handover", caption: "An auto-composed summary of what the next person inherits." },
+    ],
+    outcome: [
+      { label: "What changed", body: "The dashboard became a queue. Decisions replaced monitoring as the core interaction." },
+      { label: "Validated", body: "In moderated walkthroughs with 4 dispatchers, every participant located and resolved the top-priority exception without guidance." },
+      { label: "Feedback", body: "\"This is the first version where I'd know what to do in the first two seconds.\" — dispatcher, 9 years experience" },
+    ],
     reflection:
-      "The biggest shift for me was learning that ranking information is a design act. Removing nothing, adding nothing — just deciding an order — changed how testers felt about the same data.",
+      "I spent the first three weeks designing for completeness because completeness is easy to justify. The project improved the moment I accepted that most of the data should never be on screen.",
+    limitations:
+      "No production deployment, so there are no operational metrics. Findings come from a small qualitative sample and should be treated as directional.",
+    nextSteps:
+      "Instrument a pilot to measure time-to-resolution, and test the handover summary across a full shift rotation.",
   },
   {
-    id: "medmate",
-    number: "02",
-    title: "MedMate",
-    slug: "medmate",
+    id: "belong",
+    index: "02",
+    title: "Belong",
+    slug: "belong",
+    year: "2026",
+    category: "HCI / UX Research / Interaction Design",
+    description: "Designing for the uncertainty of belonging.",
+    positioning:
+      "A research-driven HCI concept helping international students navigate unfamiliar systems, social situations, and everyday uncertainty.",
+    role: "UX/UI Designer · HCI Researcher · Product Designer",
+    timeline: "Conceptual prototype",
+    team: "Individual project",
+    tools: ["React", "TypeScript", "Figma"],
+    heroImage: belongImg,
+    thumbnail: belongImg,
+    tone: "light",
+    challenge: "",
+    context: "",
+    research: [],
+    insights: [],
+    hmw: [],
+    principles: [],
+    process: [],
+    designSystem: [],
+    finalScreens: [],
+    outcome: [],
+    reflection: "",
+    limitations: "",
+    nextSteps: "",
+  },
+  {
+    id: "mira",
+    index: "03",
+    title: "Mira Health",
+    slug: "mira-health",
     year: "2025",
-    category: "Mobile / Health",
+    category: "Research / Mobile Product Design",
     description:
-      "A research-driven companion app that treats medication adherence as a memory problem, not a discipline problem.",
-    role: "UX Research / Interaction Design / Mobile UI",
-    timeline: "10 weeks — 2025",
-    tools: ["Figma", "Protopie", "Notion", "Optimal Workshop"],
-    team: "Pair project — one researcher, one designer (me)",
-    heroArt: "meds",
-    thumbArt: "meds",
-    overview:
-      "MedMate reframes adherence around context: what to take, with what, and what just happened — designed with, not for, people managing multiple prescriptions.",
-    challenge: {
-      context:
-        "People managing three or more daily medications don't fail from forgetfulness alone — they fail from ambiguity: which pill, with food or without, and did that already happen today?",
-      problem:
-        "Reminder apps treat adherence as an alarm problem. Users described a different problem: knowing what to do now, and being certain it's safe.",
-      stats: [
-        {
-          value: "3+",
-          label: "daily medications per participant",
-          note: "Screening criterion across all 8 interviews",
-        },
-        {
-          value: "62%",
-          label: "of missed doses were “unsure, not forgot”",
-          note: "Diary study, two weeks, 8 participants",
-        },
-        {
-          value: "1",
-          label: "question asked more than any other",
-          note: "“Is it safe to take this with what I just had?”",
-        },
-      ],
-      quote:
-        "I don't need a louder alarm. I need to be sure I'm doing the right thing.",
-    },
-    research: {
-      approaches: [
-        {
-          name: "Diary study",
-          detail: "8 participants, 14 days, daily photo + voice logs of doses.",
-        },
-        {
-          name: "Interviews",
-          detail: "8 depth interviews including 3 caregivers.",
-        },
-        {
-          name: "Card sort",
-          detail: "Open sort with 12 participants to name medication contexts.",
-        },
-      ],
-      insights: [
-        {
-          title: "Adherence is a certainty problem, not a memory problem.",
-          body: "Most missed doses weren't forgotten — they were skipped because the person wasn't sure. Certainty, not alarm, drives the next dose.",
-        },
-        {
-          title: "Context beats time.",
-          body: "People anchor doses to events (“after breakfast”), not clock times. Rigid alarms fought their real routines.",
-        },
-        {
-          title: "Caregivers are silent second users.",
-          body: "Three participants shared accounts with family. Designs that serve only the patient leave half the system out.",
-        },
-      ],
-    },
-    define: {
-      statement:
-        "How might we make the next dose feel certain — safe in context, confirmed in one glance, and visible to the people who help?",
-      hmws: [
-        "How might we anchor doses to routines instead of clocks?",
-        "How might we answer “is this safe?” before it's asked?",
-        "How might we make a caregiver's help feel invited, not surveilling?",
-      ],
-      principles: [
-        {
-          title: "Certainty over urgency",
-          body: "No red badges. The next dose is presented as done-or-not, never as a failure countdown.",
-        },
-        {
-          title: "Routine anchors",
-          body: "Scheduling flows from meals and rituals, with time as support — not the spine.",
-        },
-        {
-          title: "Designed with, not for",
-          body: "Every flow was reviewed by participants before it was built.",
-        },
-      ],
-      personas: [
-        {
-          name: "Grace, 67",
-          meta: "4 medications, lives alone",
-          goal: "Feel sure each dose is right and safe",
-          friction: "Checks and re-checks the leaflet; fears double-dosing",
-        },
-        {
-          name: "Daniel, caregiver son",
-          meta: "Checks in remotely, twice a week",
-          goal: "Help without hovering",
-          friction: "No way to see yesterday without calling",
-        },
-      ],
-    },
-    ideation: {
-      explorations: [
-        {
-          caption: "Exploration 1 — classic alarm list with checkboxes",
-          verdict: "Rejected",
-          note: "Familiar, but it reproduced the exact “discipline” framing participants pushed back on.",
-        },
-        {
-          caption: "Exploration 2 — “Now” card with safety context",
-          verdict: "Developed",
-          note: "One card answers: what, with what, and what just happened. Became the core interaction.",
-        },
-        {
-          caption: "Exploration 3 — photo-first check-in",
-          verdict: "Adapted",
-          note: "Great for confirmation, heavy as a default. Kept as an optional confirmation ritual.",
-        },
-      ],
-      rejections: [
-        {
-          title: "Streaks and gamification",
-          why: "Participants read streaks as a record of failure. One broken chain outweighed ten good days.",
-          learned:
-            "In health contexts, gamified history can become emotional debt. Progress must forgive.",
-        },
-        {
-          title: "Full family dashboard with alerts",
-          why: "Early reviews felt like surveillance. Caregivers themselves rejected the alert tone.",
-          learned:
-            "Support needs consent surfaces. Visibility must be something the patient grants, not loses.",
-        },
-      ],
-    },
-    designSystem: {
-      intro:
-        "A system tuned for low-stress use: large type, high contrast, and a single green signal — because nothing in this product should ever feel like an alarm.",
-      type: [
-        { name: "Primary", spec: "Archivo · 600–700 · 17–21px body sizes" },
-        { name: "Numerals", spec: "Archivo Expanded · tabular figures" },
-        { name: "Meta", spec: "IBM Plex Mono · 400 · labels + timestamps" },
-      ],
-      colors: [
-        { name: "Paper", token: "base surfaces", dark: false },
-        { name: "Ink", token: "primary text", dark: true },
-        { name: "Signal", token: "confirm · focus · care", dark: true },
-        { name: "Hush", token: "completed states", dark: false },
-      ],
-      components: [
-        "Now card — next dose with safety context",
-        "Routine rail — meal-anchored schedule",
-        "Confirm flow — one-thumb, two-eyes confirmation",
-        "Care link — consent-first sharing sheet",
-      ],
-      a11y: [
-        "Body text ≥ 17px, minimum target size 48px",
-        "Dynamic type respected to 130% without layout loss",
-        "Color-blind safe: confirm state pairs icon + label + position",
-      ],
-    },
-    finalScreens: [
-      {
-        caption: "01 — The Now card",
-        note: "What to take, with what, and what just happened.",
-        variant: "meds",
-        aspect: "tall",
-      },
-      {
-        caption: "02 — Routine rail",
-        note: "Anchored to breakfast, not to 8:00 AM.",
-        variant: "meds",
-        aspect: "tall",
-      },
-      {
-        caption: "03 — Care link",
-        note: "Sharing designed as an invitation.",
-        variant: "meds",
-        aspect: "square",
-      },
+      "A research-driven companion for people managing long-term conditions between appointments.",
+    positioning: "Care doesn't happen in the clinic. It happens in the 363 days in between.",
+    role: "UX Researcher & Product Designer",
+    timeline: "10 weeks",
+    team: "Individual, with clinician feedback sessions",
+    tools: ["Figma", "Dovetail", "Protopie"],
+    heroImage: mobileImg,
+    thumbnail: mobileImg,
+    tone: "light",
+    challenge:
+      "Tracking apps ask patients to log constantly and give almost nothing back, so people abandon them within two weeks.",
+    context: "Adults managing a chronic condition with quarterly specialist appointments.",
+    research: [
+      { method: "In-depth interviews", detail: "7 participants across 3 conditions" },
+      { method: "Artefact analysis", detail: "Reviewed personal notebooks, notes apps and photos used instead of trackers" },
+      { method: "Clinician sessions", detail: "2 conversations on what data is actually usable in consultation" },
     ],
-    outcome: {
-      summary:
-        "Prototype tested in two rounds with 6 participants from the original research group.",
-      validations: [
-        {
-          title: "Expected outcome",
-          body: "Participants confirm doses with fewer re-checks — second round needed no leaflet lookups.",
-        },
-        {
-          title: "Usability signal",
-          body: "6 of 6 completed the full “confirm today's doses” flow unaided; 5 called the Now card “calming”.",
-        },
-        {
-          title: "Validated decisions",
-          body: "Routine anchoring and consent-first care link both kept through testing; streaks stayed rejected.",
-        },
-      ],
-      limitations:
-        "Adherence itself wasn't measured — only task confidence and comprehension. Real-world effect needs a longitudinal study with clinical oversight.",
-      next: [
-        "Longitudinal diary pilot with the Now card",
-        "Co-design sessions for the caregiver view",
-        "Accessibility audit with low-vision participants",
-      ],
-    },
-    reflection:
-      "This project taught me to design the feeling, not just the flow. The moment we removed red from the interface, participants stopped describing it as “managing” and started describing it as “checking in”.",
+    insights: [
+      { n: "01", title: "Logging is a cost, not a habit.", body: "People tracked willingly only when the record was useful to someone else." },
+      { n: "02", title: "The appointment is the deadline.", body: "Motivation spikes in the week before a visit and collapses after it." },
+      { n: "03", title: "Patients narrate; apps tabulate.", body: "People remember episodes and stories, not numeric scales." },
+    ],
+    hmw: [
+      "How might we turn scattered notes into something a clinician can read in 60 seconds?",
+      "How might we make logging feel like preparing, not reporting?",
+    ],
+    principles: [
+      { title: "Ask less, infer more", body: "Every field must justify its existence." },
+      { title: "Give something back", body: "Each entry visibly improves the appointment summary." },
+      { title: "Respect the bad days", body: "Streaks and guilt mechanics are excluded by design." },
+    ],
+    process: [
+      { title: "Concept 01 — daily score", caption: "A single wellbeing number logged each morning.", learned: "Why this didn't work: it flattened experiences people described as complex and episodic." },
+      { title: "Concept 02 — episode capture", caption: "Log only when something notable happens, in your own words.", learned: "What changed: entry volume dropped and usefulness rose. Voice notes became the primary input." },
+      { title: "Concept 03 — appointment brief", caption: "The app assembles a one-page brief before each visit.", learned: "What I learned: the artefact, not the app, is the product." },
+    ],
+    designSystem: [
+      { label: "Type", value: "Large body sizes, 17px minimum, generous line height" },
+      { label: "Colour", value: "Warm neutrals only; no red/green health-status coding" },
+      { label: "Components", value: "Episode card, voice capture, timeline, brief composer" },
+      { label: "Accessibility", value: "Dynamic type support, 48px touch targets, full VoiceOver labelling" },
+    ],
+    finalScreens: [
+      { title: "Episode capture", caption: "Voice-first, thirty seconds, no forms." },
+      { title: "Timeline", caption: "Episodes grouped into patterns rather than daily rows." },
+      { title: "Appointment brief", caption: "One page, printable, written for the clinician." },
+    ],
+    outcome: [
+      { label: "What changed", body: "The product goal moved from daily tracking to appointment preparation." },
+      { label: "Feedback", body: "Both clinicians said the one-page brief was the first patient-generated document they'd realistically read." },
+    ],
+    reflection: "I designed a tracker before I understood that nobody wanted to track. The interviews were clear about this in week two; I heard it properly in week six.",
+    limitations: "No longitudinal testing, and no participants with low digital confidence were recruited — a significant gap.",
+    nextSteps: "Recruit a broader sample and test the brief inside a real consultation.",
   },
   {
     id: "kinetic",
-    number: "03",
-    title: "Kinetic Type Lab",
-    slug: "kinetic-type-lab",
+    index: "04",
+    title: "Kinetic Type",
+    slug: "kinetic-type",
     year: "2025",
-    category: "Creative Technology",
-    description:
-      "An experimental interaction project where typography is the interface — motion explains the content.",
-    role: "Concept / Design / Creative Coding",
-    timeline: "6 weeks — 2025",
-    tools: ["React", "TypeScript", "Framer Motion", "Canvas API"],
-    team: "Solo — design and code",
-    heroArt: "type",
-    thumbArt: "type",
-    overview:
-      "A series of live typographic instruments where weight, width, and position respond to scroll and cursor — built to answer one question: can motion carry meaning without decoration?",
-    challenge: {
-      context:
-        "Motion on the web is usually garnish: easing curves applied after the content exists. I wanted to build the opposite — pieces where the motion is the content.",
-      problem:
-        "Most “animated typography” decorates words without changing what they say. Could variable-font motion make meaning legible — and do it accessibly?",
-      stats: [
-        {
-          value: "5",
-          label: "instruments built and shipped",
-          note: "From 11 sketches — rejection was part of the spec",
-        },
-        {
-          value: "0",
-          label: "images used across the lab",
-          note: "Type and motion only; the interface is the artwork",
-        },
-        {
-          value: "100%",
-          label: "functionality under reduced-motion",
-          note: "Motion is enhancement, never the message's only carrier",
-        },
-      ],
-      quote: "If the motion disappears and the meaning survives, the motion was honest.",
-    },
-    research: {
-      approaches: [
-        {
-          name: "Benchmark study",
-          detail: "Collected 30 animated-type references, coded by what the motion explains.",
-        },
-        {
-          name: "Guerrilla testing",
-          detail: "12 viewers described each piece's meaning before reading any copy.",
-        },
-        {
-          name: "Reduced-motion audit",
-          detail: "Every instrument rebuilt to a static equivalent, then compared for meaning.",
-        },
-      ],
-      insights: [
-        {
-          title: "Motion explains change — or it's noise.",
-          body: "Viewers described weight shifts as “emphasis growing”, not “text moving”. When motion encodes state, people read it as meaning.",
-        },
-        {
-          title: "Easing has a personality.",
-          body: "The same 300ms move read confident, playful, or nervous depending on the curve alone. Curves are a design material.",
-        },
-        {
-          title: "Accessibility is a creative constraint.",
-          body: "Static fallbacks forced sharper compositions. The reduced-motion versions are, embarrassingly, better design.",
-        },
-      ],
-    },
-    define: {
-      statement:
-        "How might we build typographic pieces where motion carries meaning — and where turning motion off loses polish, never information?",
-      hmws: [
-        "How might we map one state change to one motion verb?",
-        "How might we make a font's own axes do the animating?",
-        "How might we keep every piece complete at zero motion?",
-      ],
-      principles: [
-        {
-          title: "One verb per piece",
-          body: "Each instrument explains exactly one change: grow, tilt, drift, compress. Two verbs is noise.",
-        },
-        {
-          title: "The font is the engine",
-          body: "Variable axes do the work — no transforms where a weight axis will do.",
-        },
-        {
-          title: "Motion is an enhancement",
-          body: "prefers-reduced-motion swaps choreography for typography, never for nothing.",
-        },
-      ],
-      personas: [
-        {
-          name: "The reviewer",
-          meta: "Design educator, 2-minute attention budget",
-          goal: "Grasp the idea in one interaction",
-          friction: "Skips anything that looks like a tech demo",
-        },
-        {
-          name: "The reader",
-          meta: "General visitor on a phone",
-          goal: "Feel the concept without understanding the code",
-          friction: "Motion-heavy sites often ignore touch and a11y",
-        },
-      ],
-    },
-    ideation: {
-      explorations: [
-        {
-          caption: "Instrument A — weight mapped to scroll velocity",
-          verdict: "Kept",
-          note: "Reading speed made literal: skimming thins the type, slowing thickens it.",
-        },
-        {
-          caption: "Instrument B — letters drift with cursor",
-          verdict: "Cut",
-          note: "Pretty, meaningless. Failed the “describe the meaning first” test with 11 of 12 viewers.",
-        },
-        {
-          caption: "Instrument C — width axis as a tension meter",
-          verdict: "Kept",
-          note: "Compressing headlines under “load” made an abstract state instantly legible.",
-        },
-      ],
-      rejections: [
-        {
-          title: "Per-letter 3D rotation",
-          why: "Technically fun, semantically empty — and nauseating past two seconds.",
-          learned:
-            "If I can't name the state the motion explains in one sentence, the piece isn't done. It's decoration with a build step.",
-        },
-        {
-          title: "Full-page mouse-follower",
-          why: "The cursor became the message. Content became a backdrop for a trick.",
-          learned:
-            "Interaction should serve attention, not kidnap it. The most advanced piece in the lab is the quietest.",
-        },
-      ],
-    },
-    designSystem: {
-      intro:
-        "The system is the specimen: Archivo's variable axes are the palette, and the grid is the score the type performs on.",
-      type: [
-        { name: "Axis — weight", spec: "100–900 · mapped to state intensity" },
-        { name: "Axis — width", spec: "62–125 · mapped to pressure / load" },
-        { name: "Anchor", spec: "Archivo Expanded · 800 · identity states" },
-      ],
-      colors: [
-        { name: "Night", token: "stage — the dark section", dark: true },
-        { name: "Night fg", token: "type at rest", dark: false },
-        { name: "Signal", token: "the single performing element", dark: true },
-        { name: "Hush", token: "reduced-motion equivalents", dark: false },
-      ],
-      components: [
-        "Instrument frame — title, verb, and static fallback",
-        "Axis legend — shows which axis is performing",
-        "Reduced-motion card — typographic equivalent of the piece",
-        "Quiet mode — global toggle preserved in the lab",
-      ],
-      a11y: [
-        "prefers-reduced-motion swaps motion for typographic state",
-        "All instruments are focusable and keyboard-stoppable",
-        "Motion never carries information absent from static text",
-      ],
-    },
-    finalScreens: [
-      {
-        caption: "01 — Weight follows scroll",
-        note: "Skimming thins the type. Reading thickens it.",
-        variant: "studio",
-        aspect: "wide",
-      },
-      {
-        caption: "02 — Width under load",
-        note: "Headlines compress as the queue fills.",
-        variant: "studio",
-        aspect: "square",
-      },
-      {
-        caption: "03 — The quiet version",
-        note: "Reduced-motion fallback: same meaning, zero choreography.",
-        variant: "studio",
-        aspect: "tall",
-      },
+    category: "Graphic Design / Motion / Typography",
+    description: "A typographic system that behaves — letterforms as an interface for rhythm and emphasis.",
+    positioning: "What if type responded to reading rather than sitting still?",
+    role: "Designer & Creative Technologist",
+    timeline: "6 weeks",
+    team: "Individual",
+    tools: ["Figma", "After Effects", "Canvas API", "Variable fonts"],
+    heroImage: typoImg,
+    thumbnail: typoImg,
+    tone: "light",
+    challenge: "Motion in typography is usually decorative. I wanted to test whether it can carry meaning.",
+    context: "A self-initiated studio project exploring variable font axes as an expressive channel.",
+    research: [
+      { method: "Reference study", detail: "40 Swiss and Japanese editorial spreads catalogued for emphasis strategies" },
+      { method: "Reading tests", detail: "Informal comparison of static vs. responsive emphasis with 8 readers" },
     ],
-    outcome: {
-      summary:
-        "Shipped as part of this portfolio; evaluated through structured viewer descriptions.",
-      validations: [
-        {
-          title: "Expected outcome",
-          body: "Viewers name the state a piece describes before reading its caption — the motion IS the explanation.",
-        },
-        {
-          title: "Usability signal",
-          body: "11 of 12 viewers described kept instruments correctly; cut pieces scored 1–4.",
-        },
-        {
-          title: "Validated decisions",
-          body: "One-verb rule and static-first builds held up. Both cut instruments stay cut, documented above.",
-        },
-      ],
-      limitations:
-        "Evaluation is informal — small, self-selected viewer group. No claim is made about long-term comprehension or performance under real traffic.",
-      next: [
-        "Add a touch-only instrument",
-        "Test with screen-reader users",
-        "Publish the axis-mapping cheatsheet",
-      ],
-    },
-    reflection:
-      "Building this lab changed how I brief myself. I no longer ask “what should animate?” — I ask “what change does the user need to understand?” Then motion either earns its place or leaves.",
+    insights: [
+      { n: "01", title: "Weight reads faster than colour.", body: "Readers located emphasised terms more reliably through weight shifts than through hue." },
+      { n: "02", title: "Motion has a budget.", body: "Beyond roughly two moving elements, comprehension dropped and irritation rose." },
+    ],
+    hmw: ["How might a variable axis express hierarchy the way a voice expresses stress?"],
+    principles: [
+      { title: "One thing moves", body: "Never more than a single element in motion per viewport." },
+      { title: "Motion follows meaning", body: "Every animated axis maps to a semantic property." },
+    ],
+    process: [
+      { title: "Study 01 — everything animates", caption: "Full-page continuous weight oscillation.", learned: "Why this didn't work: unreadable within seconds. Motion without hierarchy is noise." },
+      { title: "Study 02 — scroll-linked weight", caption: "Weight tied to scroll velocity.", learned: "What changed: motion became a consequence of the reader's own action, which made it feel intentional." },
+    ],
+    designSystem: [
+      { label: "Axes", value: "Weight 200–900, width 75–125, optical size linked to viewport" },
+      { label: "Grid", value: "Asymmetric 7-column editorial grid" },
+      { label: "Accessibility", value: "All motion disabled under prefers-reduced-motion, with static emphasis retained" },
+    ],
+    finalScreens: [
+      { title: "Poster set", caption: "Six posters generated from the same type engine." },
+      { title: "Reader", caption: "A long-form reading view with scroll-linked emphasis." },
+    ],
+    outcome: [
+      { label: "What changed", body: "Motion moved from ornament to a legitimate hierarchy tool in my own practice." },
+      { label: "Validated", body: "Readers preferred the restrained version 7 out of 8 times." },
+    ],
+    reflection: "The best version of this project was the one with the least movement in it.",
+    limitations: "Tested informally, on desktop only, with a small and design-literate group.",
+    nextSteps: "Package the engine as an open component and test comprehension properly.",
+  },
+  {
+    id: "signal",
+    index: "05",
+    title: "Signal Field",
+    slug: "signal-field",
+    year: "2024",
+    category: "Creative Technology / Interaction",
+    description: "An experimental interface where data becomes a landscape you navigate by feel.",
+    positioning: "Reading a chart is analysis. Walking through data is intuition.",
+    role: "Designer & Developer",
+    timeline: "4 weeks",
+    team: "Individual",
+    tools: ["Canvas", "WebGL", "TypeScript"],
+    heroImage: labImg,
+    thumbnail: labImg,
+    tone: "dark",
+    challenge: "Conventional dashboards ask you to already know which question to ask.",
+    context: "An experiment in exploratory data interfaces, built as a public sketch.",
+    research: [
+      { method: "Precedent study", detail: "Reviewed spatial and ambient data interfaces from research literature" },
+      { method: "Play testing", detail: "9 people explored the sketch without instructions" },
+    ],
+    insights: [
+      { n: "01", title: "Exploration needs a floor.", body: "Without a stable reference plane, people lost orientation within twenty seconds." },
+      { n: "02", title: "Ambiguity invites questions.", body: "Testers asked more questions of the field than of an equivalent bar chart." },
+    ],
+    hmw: ["How might a spatial interface support wondering rather than reporting?"],
+    principles: [
+      { title: "Always recoverable", body: "One gesture returns you to the origin." },
+      { title: "Precision on demand", body: "Ambient by default, exact when asked." },
+    ],
+    process: [
+      { title: "Build 01 — free camera", caption: "Full 6-degree navigation of the point field.", learned: "Why this didn't work: freedom without landmarks produced disorientation, not insight." },
+      { title: "Build 02 — constrained orbit", caption: "Orbit plus a fixed ground grid.", learned: "What changed: constraint made exploration legible. Testers stayed engaged three times longer." },
+    ],
+    designSystem: [
+      { label: "Palette", value: "Near-black field, white point mesh, vermilion for selection only" },
+      { label: "Interaction", value: "Orbit, hover-inspect, reset — three verbs total" },
+      { label: "Accessibility", value: "Full keyboard alternative and a tabular data fallback view" },
+    ],
+    finalScreens: [
+      { title: "The field", caption: "Ambient overview of the full dataset." },
+      { title: "Inspect", caption: "Precise values surfaced on focus." },
+    ],
+    outcome: [
+      { label: "What changed", body: "Confirmed that spatial data interfaces need conventional fallbacks, not replacements." },
+      { label: "Limitation", body: "Performance degrades past roughly 50k points on mid-range hardware." },
+    ],
+    reflection: "It's the most technically ambitious thing I've built and the least useful — and both facts taught me something worth keeping.",
+    limitations: "No accessibility testing with screen reader users yet; the fallback view is untested.",
+    nextSteps: "Test the tabular fallback properly and profile rendering performance.",
   },
 ];
 
-export const getProject = (slug: string) =>
-  projects.find((p) => p.slug === slug);
+export const getProject = (slug: string) => projects.find((p) => p.slug === slug);

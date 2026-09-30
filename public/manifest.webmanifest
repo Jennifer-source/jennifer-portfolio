@@ -1,16 +1,16 @@
 {
-  "name": "freebuff.com application",
-  "short_name": "freebuff.com",
-  "description": "freebuff.com application",
+  "name": "Design Alchemy — Joseph Jennifer",
+  "short_name": "Design Alchemy",
+  "description": "Portfolio 2026 of Joseph Jennifer, UI/UX designer and creative technologist: case studies, research, design systems, motion and experiments.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#f7f5f0",
+  "theme_color": "#1c1a18",
   "icons": [
     {
-      "src": "/logo.svg",
+      "src": "/jennifer-favicon.png",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

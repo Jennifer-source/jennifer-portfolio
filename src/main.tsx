@@ -10,7 +10,6 @@ import "./index.css";
 
 // Lazy load route components for better code splitting
 const Home = lazy(() => import("./pages/Home.tsx"));
-const AuthPage = lazy(() => import("./pages/Auth.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 const CaseStudy = lazy(() => import("./pages/CaseStudy.tsx"));
 
@@ -106,6 +105,19 @@ function RouteSyncer() {
   return null;
 }
 
+/** Preserve in-page hash navigation when arriving from another route. */
+function ScrollManager() {
+  const location = useLocation();
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const el = document.getElementById(location.hash.slice(1));
+      if (el) requestAnimationFrame(() => el.scrollIntoView({ behavior: "auto" }));
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, location.hash]);
+  return null;
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -116,14 +128,11 @@ createRoot(document.getElementById("root")!).render(
       <ConvexAuthProvider client={convex}>
         <BrowserRouter>
           <RouteSyncer />
+          <ScrollManager />
           <Suspense fallback={<RouteLoading />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/work/:slug" element={<CaseStudy />} />
-              <Route
-                path="/auth"
-                element={<AuthPage redirectAfterAuth="/" />}
-              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
