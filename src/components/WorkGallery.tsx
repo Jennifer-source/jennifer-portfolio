@@ -8,8 +8,19 @@ import { Arrow } from "@/components/core";
 /**
  * SELECTED WORK — editorial gallery. Each project is an individual story:
  * alternating asymmetric compositions, oversized index numerals, hover
- * metadata reveal, "VIEW CASE STUDY" cursor label.
+ * metadata reveal, "VIEW CASE STUDY" cursor label. Each project carries its
+ * own accent hue — cobalt, verdant, amber — within the paper/ink system.
  */
+const HUE: Record<string, string> = {
+  fleetops: "text-cobalt",
+  medmate: "text-verdant",
+  kinetic: "text-amber",
+};
+const HUE_HOVER: Record<string, string> = {
+  fleetops: "group-hover:text-cobalt",
+  medmate: "group-hover:text-verdant",
+  kinetic: "group-hover:text-amber",
+};
 export function WorkGallery() {
   return (
     <section id="work" aria-label="Selected work" className="pb-24 md:pb-36">
@@ -62,7 +73,7 @@ function ProjectRow({ p, flip }: { p: (typeof projects)[number]; flip: boolean }
               transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1], delay: 0.15 }}
               className="mt-6 space-y-3"
             >
-              <p className="label-mono text-signal">{p.category}</p>
+              <p className={`label-mono ${HUE[p.id] ?? "text-signal"}`}>{p.category}</p>
               <dl className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex justify-between gap-4 border-t border-border pt-2">
                   <dt>ROLE</dt>
@@ -122,7 +133,7 @@ function ProjectRow({ p, flip }: { p: (typeof projects)[number]; flip: boolean }
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: 0.1 }}
-              className="display-md"
+              className={`display-md transition-colors duration-500 ${HUE_HOVER[p.id] ?? "group-hover:text-signal"}`}
             >
               {p.title}
             </motion.h3>

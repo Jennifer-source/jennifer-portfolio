@@ -74,7 +74,7 @@ export function Manifesto() {
                 <span
                   key={w}
                   className={`font-wide text-lg md:text-2xl font-extrabold tracking-tight ${
-                    i === 2 ? "text-signal" : "text-ink/85"
+                    i === 0 ? "text-cobalt" : i === 2 ? "text-amber" : i === 4 ? "text-verdant" : "text-ink/85"
                   }`}
                 >
                   {w}

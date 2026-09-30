@@ -19,7 +19,7 @@ export function Contact() {
             <br />
             SOMETHING
             <br />
-            <span className="text-muted-foreground">WORTH REMEMBERING.</span>
+            <span className="text-cobalt">WORTH REMEMBERING.</span>
           </h2>
         </Reveal>
 

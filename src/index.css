@@ -52,6 +52,15 @@
 
   --background: oklch(0.972 0.003 84);      /* paper #F7F5F0 */
   --foreground: oklch(0.19 0.005 80);       /* ink  #1A1917 */
+
+  /* bold, serious supporting hues — strategic, never decorative */
+  --cobalt: oklch(0.5 0.19 262);
+  --cobalt-deep: oklch(0.36 0.15 262);
+  --cobalt-soft: oklch(0.955 0.024 262);
+  --amber: oklch(0.68 0.15 70);
+  --amber-soft: oklch(0.962 0.038 85);
+  --verdant: oklch(0.55 0.13 158);
+  --verdant-soft: oklch(0.955 0.03 158);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.19 0.005 80);
   --popover: oklch(1 0 0);
@@ -118,6 +127,13 @@
   --color-paper-deep: var(--paper-deep);
   --color-signal: var(--signal);
   --color-signal-ink: var(--signal-ink);
+  --color-cobalt: var(--cobalt);
+  --color-cobalt-deep: var(--cobalt-deep);
+  --color-cobalt-soft: var(--cobalt-soft);
+  --color-amber: var(--amber);
+  --color-amber-soft: var(--amber-soft);
+  --color-verdant: var(--verdant);
+  --color-verdant-soft: var(--verdant-soft);
   --color-night: var(--night);
   --color-night-soft: var(--night-soft);
   --color-night-fg: var(--night-fg);

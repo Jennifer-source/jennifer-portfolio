@@ -30,9 +30,9 @@ export function ExperimentGrid() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-8% 0px" }}
               transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: (i % 4) * 0.06 }}
-              className={`group relative border border-border bg-paper ${
-                x.tall ? "row-span-2" : ""
-              } ${i === 2 ? "md:col-span-2" : ""}`}
+              className={`group relative border border-border ${
+                "tone" in x ? x.tone : "bg-paper"
+              } ${x.tall ? "row-span-2" : ""} ${i === 2 ? "md:col-span-2" : ""}`}
             >
               <div className={`relative ${x.tall ? "aspect-[3/4]" : "aspect-square md:aspect-auto md:h-full md:min-h-[220px]"}`}>
                 <motion.div

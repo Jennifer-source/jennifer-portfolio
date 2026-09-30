@@ -5,6 +5,7 @@ import { site } from "@/data/site";
 
 const NAV = [
   { label: "WORK", href: "/#work" },
+  { label: "LAB", href: "/#lab" },
   { label: "PROCESS", href: "/#process" },
   { label: "ABOUT", href: "/#about" },
   { label: "CONTACT", href: "/#contact" },
@@ -26,7 +27,7 @@ export function Navigation({ dark }: { dark: boolean }) {
 
   useEffect(() => {
     if (location.pathname !== "/") return;
-    const ids = ["work", "process", "about", "contact"];
+    const ids = ["work", "lab", "process", "about", "contact"];
     const observers: IntersectionObserver[] = [];
     const visible = new Map<string, number>();
     const io = new IntersectionObserver(
@@ -73,8 +74,8 @@ export function Navigation({ dark }: { dark: boolean }) {
         } ${scrolled ? "shadow-[0_8px_30px_rgba(0,0,0,0.06)]" : ""}`}
       >
         <Link to="/" className="flex items-baseline gap-2" aria-label="Home">
-          <span className="font-wide text-sm font-extrabold tracking-tight">JJ</span>
-          <span className="label-mono opacity-50 hidden sm:inline">— Portfolio / 2026</span>
+          <span className="font-wide text-sm font-extrabold tracking-tight">JENNIFER</span>
+          <span className="label-mono opacity-50 hidden sm:inline">— PORTFOLIO / 2026</span>
         </Link>
 
         <ul className="hidden md:flex items-center gap-1">

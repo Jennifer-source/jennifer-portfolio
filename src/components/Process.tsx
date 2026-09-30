@@ -14,7 +14,7 @@ export function Process() {
   return (
     <section id="process" aria-label="How I think — design process" className="pb-24 md:pb-36">
       <div className="edge pb-12">
-        <p className="label-mono text-signal">HOW I THINK</p>
+        <p className="label-mono text-verdant">HOW I THINK</p>
         <h2 className="display-lg mt-4">
           A PROCESS YOU
           <br />

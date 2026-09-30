@@ -14,9 +14,9 @@ const STAGES = [
     d: "Layers move at different speeds so the eye understands what sits in front.",
   },
   {
-    k: "03 — SIGNAL",
-    t: "One red element, everywhere.",
-    d: "The accent tracks the eye: cursor, focus rings, risk states, the next action.",
+    k: "03 — COLOR AS SIGNAL",
+    t: "A hue means something.",
+    d: "Cobalt, verdant, amber, signal red — each tracks a different kind of information: focus, success, craft, action.",
   },
   {
     k: "04 — SETTLE",
@@ -131,12 +131,27 @@ function MotionStagePlate() {
     <div className="h-full w-full" aria-hidden>
       <svg viewBox="0 0 160 100" className="h-full w-full" preserveAspectRatio="xMidYMid slice">
         {Array.from({ length: 10 }, (_, i) => (
-          <rect key={i} x={12 + i * 14} y={38 - i * 2.2} width={9 - i * 0.55} height={24 + i * 4.4} fill="#F2EFE9" fillOpacity={0.16 + i * 0.05} />
+          <rect
+            key={i}
+            x={12 + i * 14}
+            y={38 - i * 2.2}
+            width={9 - i * 0.55}
+            height={24 + i * 4.4}
+            fill={i % 5 === 2 ? "#3B5BDB" : i % 5 === 4 ? "#2B9D77" : "#F2EFE9"}
+            fillOpacity={0.16 + i * 0.05}
+          />
         ))}
         <rect x="12" y="20" width="52" height="3.4" fill="#E4572E" />
         <rect x="12" y="86" width="136" height="0.4" fill="#F2EFE9" fillOpacity="0.25" />
         {Array.from({ length: 5 }, (_, i) => (
-          <circle key={`d${i}`} cx={118 + i * 7} cy="30" r="1.6" fill="#F2EFE9" fillOpacity={0.3 + i * 0.1} />
+          <circle
+            key={`d${i}`}
+            cx={118 + i * 7}
+            cy="30"
+            r="1.6"
+            fill={i === 3 ? "#D9A13B" : "#F2EFE9"}
+            fillOpacity={0.3 + i * 0.1}
+          />
         ))}
         <rect x="118" y="46" width="30" height="0.4" fill="#F2EFE9" fillOpacity="0.3" />
         <rect x="118" y="52" width="22" height="0.4" fill="#F2EFE9" fillOpacity="0.2" />

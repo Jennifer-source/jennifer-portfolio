@@ -164,6 +164,7 @@ function TypeArt({ spec, seed }: { spec: ArtSpec; seed: string }) {
     w: 8 + r() * 26,
     y: 10 + i * 5.4,
   }));
+  const hues = ["#3B5BDB", "#F2EFE9", "#2B9D77", "#F2EFE9", "#E4572E", "#F2EFE9", "#3B5BDB", "#F2EFE9", "#2B9D77"];
   return (
     <Frame
       tone="dark"
@@ -179,8 +180,8 @@ function TypeArt({ spec, seed }: { spec: ArtSpec; seed: string }) {
               y={b.y}
               width={b.w}
               height={i === 4 ? 2.6 : 1.4}
-              fill={i === 4 ? p.accent : p.fg}
-              fillOpacity={i === 4 ? 1 : 0.28 + r() * 0.3}
+              fill={i === 4 ? p.accent : hues[i]}
+              fillOpacity={i === 4 ? 1 : 0.3 + r() * 0.35}
             />
           ))}
           <rect x="62" y="10" width="0.35" height="42" fill={p.fg} fillOpacity="0.3" />
@@ -210,8 +211,8 @@ export function ExperimentArt({ art, index }: { art: string; index: string }) {
             cx={8 + (i % 10) * 9.4}
             cy={8 + Math.floor(i / 10) * 11.5}
             r={1 + r() * 2.6}
-            fill={i === 33 ? "#E4572E" : "#1A1917"}
-            fillOpacity={i === 33 ? 1 : 0.25 + r() * 0.3}
+            fill={i === 33 ? "#E4572E" : i % 7 === 0 ? "#3B5BDB" : i % 11 === 0 ? "#2B9D77" : "#1A1917"}
+            fillOpacity={i === 33 ? 1 : 0.28 + r() * 0.32}
           />
         ))}
       </svg>
@@ -225,7 +226,7 @@ export function ExperimentArt({ art, index }: { art: string; index: string }) {
             <rect x={8 + i * 30} y="10" width="24" height="42" fill="#FFFFFF" stroke="#1A1917" strokeOpacity="0.25" strokeWidth="0.4" />
             <rect x={11 + i * 30} y={14 + i * 4} width={18 - i * 2} height="3" fill="#1A1917" fillOpacity="0.8" />
             <rect x={11 + i * 30} y={21 + i * 2} width="12" height="1.6" fill="#1A1917" fillOpacity="0.4" />
-            <circle cx={14 + i * 30} cy={44} r={4 - i * 0.8} fill={i === 1 ? "#E4572E" : "#1A1917"} fillOpacity={i === 1 ? 1 : 0.7} />
+            <circle cx={14 + i * 30} cy={44} r={4 - i * 0.8} fill={i === 1 ? "#E4572E" : i === 0 ? "#3B5BDB" : "#2B9D77"} fillOpacity={i === 1 ? 1 : 0.85} />
           </g>
         ))}
       </svg>

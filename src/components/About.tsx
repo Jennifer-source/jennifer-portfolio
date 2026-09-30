@@ -10,7 +10,7 @@ import { useState } from "react";
  */
 export function About() {
   return (
-    <section id="about" aria-label="About Joseph Jennifer" className="pb-24 md:pb-36">
+    <section id="about" aria-label="About Jennifer" className="pb-24 md:pb-36">
       <Rule index="04" label="ABOUT" />
 
       <div className="edge grid gap-12 md:grid-cols-12">
@@ -18,7 +18,7 @@ export function About() {
           <h2 className="display-lg">
             CURIOUS
             <br />
-            BY <span className="text-signal">DEFAULT.</span>
+            BY <span className="text-cobalt">DEFAULT.</span>
           </h2>
           <div className="mt-10 space-y-10">
             <Chapter n="01" t="WHERE I STARTED">
@@ -78,7 +78,7 @@ export function About() {
           {skills.map((g, gi) => (
             <Reveal key={g.group} delay={gi * 0.06}>
               <div>
-                <p className="label-mono text-signal">{g.group}</p>
+                <p className={`label-mono ${g.color}`}>{g.group}</p>
                 <ul className="mt-4 border-t border-border">
                   {g.items.map((s) => (
                     <SkillRow key={s.name} name={s.name} note={s.note} />
@@ -120,7 +120,7 @@ function PortraitPlate() {
         <rect x="36" y="58" width="8" height="2" fill="#E4572E" />
         <rect x="0" y="72" width="80" height="0.4" fill="#F2EFE9" strokeOpacity="0.2" stroke="#F2EFE9" fillOpacity="0.2" />
         <text x="6" y="12" fill="#F2EFE9" fillOpacity="0.5" fontSize="4" fontFamily="IBM Plex Mono, monospace">
-          J.JENNIFER — FIG.01
+          JENNIFER — FIG.01
         </text>
         <text x="6" y="94" fill="#E4572E" fontSize="3.2" fontFamily="IBM Plex Mono, monospace">
           CURIOUS BY DEFAULT

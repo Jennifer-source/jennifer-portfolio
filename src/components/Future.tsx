@@ -69,7 +69,7 @@ export function Future() {
                   <br />
                   {lines[1]}
                 </motion.span>
-                <motion.span style={{ y: reduce ? 0 : line2 }} className="mt-2 block text-signal">
+                <motion.span style={{ y: reduce ? 0 : line2 }} className="mt-2 block text-amber">
                   {lines2[0]}
                   <br />
                   {lines2[1]}

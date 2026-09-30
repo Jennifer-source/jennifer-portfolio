@@ -1,26 +1,27 @@
 export const site = {
-  name: "Joseph Jennifer",
-  shortName: "JJ",
+  name: "Jennifer",
+  shortName: "J",
   year: "2026",
   role: "UI/UX Designer & Creative Technologist",
   positioning:
     "I turn complex problems into experiences people want to explore.",
   subPositioning:
-    "Designing systems, stories, and interfaces for humans.",
-  location: "Lagos, NG — open to remote",
-  email: "hello@josephjennifer.design",
+    "Research first. Systems always. Motion where it earns its place.",
+  location: "Working remotely, worldwide",
+  email: "hello@jennifer.design",
   links: {
-    linkedin: "https://linkedin.com/in/josephjennifer",
-    behance: "https://behance.net/josephjennifer",
-    instagram: "https://instagram.com/josephjennifer.design",
-    github: "https://github.com/josephjennifer",
+    linkedin: "https://linkedin.com/in/jennifer-design",
+    behance: "https://behance.net/jennifer-design",
+    instagram: "https://instagram.com/jennifer.design",
+    github: "https://github.com/jennifer-design",
   },
-  manifest: ["WORK", "PROCESS", "ABOUT", "CONTACT"] as const,
+  manifest: ["WORK", "LAB", "PROCESS", "ABOUT", "CONTACT"] as const,
 } as const;
 
 export const skills = [
   {
     group: "THINKING",
+    color: "text-cobalt",
     items: [
       { name: "UX Research", note: "Interviews, synthesis, usability testing" },
       { name: "Information Architecture", note: "Structures that scale with content" },
@@ -30,6 +31,7 @@ export const skills = [
   },
   {
     group: "DESIGNING",
+    color: "text-verdant",
     items: [
       { name: "UI Design", note: "Typography-first, grid-disciplined interfaces" },
       { name: "Design Systems", note: "Tokens, components, documentation" },
@@ -39,6 +41,7 @@ export const skills = [
   },
   {
     group: "MAKING",
+    color: "text-amber",
     items: [
       { name: "Figma", note: "Auto-layout rigor and variable-driven design" },
       { name: "Framer", note: "Production-feel interactive prototypes" },
@@ -48,6 +51,7 @@ export const skills = [
   },
   {
     group: "EXPLORING",
+    color: "text-signal",
     items: [
       { name: "AI + Design", note: "Interfaces for ambiguous machine output" },
       { name: "Creative Coding", note: "Canvas, SVG, generative systems" },
@@ -165,6 +169,7 @@ export const experiments = [
     kind: "Typography",
     blurb: "A type specimen that reflows as you scroll — order loosening, then snapping back.",
     art: "typeGrid" as const,
+    tone: "bg-cobalt-soft",
     tall: true,
   },
   {
@@ -174,6 +179,7 @@ export const experiments = [
     kind: "Creative coding",
     blurb: "Cursor-reactive dot field. Distance maps to scale, not color — restraint as a constraint.",
     art: "dots" as const,
+    tone: "bg-amber-soft",
     tall: false,
   },
   {
@@ -183,6 +189,7 @@ export const experiments = [
     kind: "Poster series",
     blurb: "Twelve posters, one grid, zero new elements. Constraint as a design method.",
     art: "posters" as const,
+    tone: "bg-verdant-soft",
     tall: false,
   },
   {
@@ -192,6 +199,7 @@ export const experiments = [
     kind: "Motion study",
     blurb: "Study of a single easing curve, looped until its personality became obvious.",
     art: "arc" as const,
+    tone: "bg-paper-deep",
     tall: false,
   },
   {
@@ -201,6 +209,7 @@ export const experiments = [
     kind: "Interface exploration",
     blurb: "An interface skinned entirely by tokens — swap five values, keep every relationship.",
     art: "tokens" as const,
+    tone: "bg-paper-deep",
     tall: true,
   },
 ] as const;

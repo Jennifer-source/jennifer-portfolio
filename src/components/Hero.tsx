@@ -64,7 +64,7 @@ export function Hero() {
       <motion.div style={{ y: yText, opacity: fade }} className="edge relative z-10 mt-auto mb-auto pt-16">
         <h1 className="display-xl">
           {line("DESIGNING", 0)}
-          {line("DIGITAL", 1)}
+          {coloredLine("DIGITAL", 1, "text-cobalt")}
           {line("EXPERIENCES", 2)}
         </h1>
         <div className="mt-6 flex flex-wrap items-end justify-between gap-6">
@@ -75,7 +75,7 @@ export function Hero() {
             transition={{ delay: 0.8, duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
             className="max-w-md body-lg text-muted-foreground"
           >
-            {site.positioning} <span className="text-ink">{site.subPositioning}</span>
+            {site.positioning} <span className="text-cobalt">{site.subPositioning}</span>
           </motion.p>
         </div>
       </motion.div>
@@ -117,6 +117,21 @@ function line2() {
         transition={{ duration: 1.1, ease: [0.19, 1, 0.22, 1], delay: 0.52 }}
       >
         THAT MOVE.
+      </motion.span>
+    </span>
+  );
+}
+
+function coloredLine(text: string, i: number, className: string) {
+  return (
+    <span key={`c${i}`} className="block overflow-hidden pb-[0.06em] -mb-[0.06em]">
+      <motion.span
+        className={`block ${className}`}
+        initial={{ y: "110%" }}
+        animate={{ y: "0%" }}
+        transition={{ duration: 1.1, ease: [0.19, 1, 0.22, 1], delay: 0.25 + i * 0.09 }}
+      >
+        {text}
       </motion.span>
     </span>
   );
