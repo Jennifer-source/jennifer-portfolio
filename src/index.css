@@ -58,8 +58,6 @@
  * PORTFOLIO DESIGN SYSTEM — "Ink & Vermilion"
  * Warm off-white paper, near-black ink, one accent (vermilion).
  * Type: Archivo (display / UI), IBM Plex Mono (metadata, labels).
- * Editorial body text: the "body-editorial" utility controls shared
- * paragraph typography (weight / leading / tracking) for supporting text.
  */
 :root {
   --radius: 0.25rem;
@@ -182,11 +180,6 @@
   font-size: 0.6875rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-}
-@utility body-editorial {
-  font-weight: 400;
-  line-height: 1.65;
-  letter-spacing: -0.008em;
 }
 @utility rule-t {
   border-top: 1px solid var(--hairline);

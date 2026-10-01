@@ -32,7 +32,7 @@ export function Achievements() {
                 <span className="label-mono text-accent">{r.year}</span>
                 <span className="label-mono text-muted-foreground">{r.cat}</span>
                 <h3 className="col-span-2 text-lg sm:col-span-1 sm:text-xl">{r.title}</h3>
-                <span className="col-span-2 text-sm body-editorial text-muted-foreground sm:col-span-1 sm:text-right">
+                <span className="col-span-2 text-sm text-muted-foreground sm:col-span-1 sm:text-right">
                   {r.note}
                 </span>
               </div>

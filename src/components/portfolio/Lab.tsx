@@ -72,7 +72,7 @@ export function Lab() {
                 <div>
                   <h3 className="display-lg text-xl uppercase sm:text-2xl">{it.title}</h3>
                   {it.note ? (
-                    <p className="mt-2 max-w-[40ch] text-sm body-editorial text-muted-foreground">{it.note}</p>
+                    <p className="mt-2 max-w-[40ch] text-sm text-muted-foreground">{it.note}</p>
                   ) : null}
                   <span className="label-mono mt-4 block translate-y-2 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                     In progress →

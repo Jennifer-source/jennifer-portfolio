@@ -302,7 +302,7 @@ function ResourceFilterDemo() {
           <div key={item.title} className="bg-paper p-5">
             <p className="label-mono text-accent">{item.meta}</p>
             <h3 className="display-lg mt-2 text-lg">{item.title}</h3>
-            <p className="mt-2 text-sm body-editorial text-muted-foreground">{item.body}</p>
+            <p className="mt-2 text-sm text-muted-foreground">{item.body}</p>
             <p className="label-mono mt-4 text-muted-foreground">Read ↗</p>
           </div>
         ))}
@@ -355,7 +355,7 @@ export function HandsOfGraceCaseStudy({
               <p className="display-lg text-[clamp(1.5rem,3vw,2.6rem)] leading-tight lg:col-span-7">
                 {project.positioning}
               </p>
-              <p className="text-lg body-editorial text-muted-foreground lg:col-span-4 lg:col-start-9">
+              <p className="text-lg leading-relaxed text-muted-foreground lg:col-span-4 lg:col-start-9">
                 A responsive static website prototype for Hands of Grace International Ministries
                 Trust: cinematic homepage, trust storytelling, impact counters, events, resources,
                 gallery lightbox, founder profiles, forms, dark mode and a PWA service worker.
@@ -389,7 +389,7 @@ export function HandsOfGraceCaseStudy({
               ].map(([k, v]) => (
                 <div key={k} className="border-t border-hairline pt-3">
                   <p className="label-mono text-muted-foreground">{k}</p>
-                  <p className="mt-1.5 text-sm body-editorial">{v}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed">{v}</p>
                 </div>
               ))}
             </div>
@@ -404,7 +404,7 @@ export function HandsOfGraceCaseStudy({
               ].map(([term, detail]) => (
                 <div key={term}>
                   <dt className="label-mono text-muted-foreground">{term}</dt>
-                  <dd className="mt-3 text-[15px] body-editorial">{detail}</dd>
+                  <dd className="mt-3 text-[15px] leading-relaxed">{detail}</dd>
                 </div>
               ))}
             </dl>
@@ -421,7 +421,7 @@ export function HandsOfGraceCaseStudy({
                 {MISSION}
               </p>
             </Reveal>
-            <p className="mt-10 max-w-2xl border-t border-white/15 pt-6 body-editorial text-white/60">
+            <p className="mt-10 max-w-2xl border-t border-white/15 pt-6 leading-relaxed text-white/60">
               The trust's own hero copy, verbatim from the site.
             </p>
             <div className="mt-12 flex flex-wrap gap-3">
@@ -443,11 +443,11 @@ export function HandsOfGraceCaseStudy({
             <SectionHeader index="03" label="About the trust" title="What the site presents" />
             <div className="mt-10 grid gap-12 lg:grid-cols-12">
               <Reveal className="lg:col-span-6">
-                <p className="text-xl body-editorial">
+                <p className="text-xl leading-relaxed">
                   The trust serves vulnerable communities through food support, village outreach,
                   elderly care, education support, prayer, and compassionate relief.
                 </p>
-                <p className="mt-6 body-editorial text-muted-foreground">
+                <p className="mt-6 leading-relaxed text-muted-foreground">
                   The website's job is to present that work with steady care, transparent service,
                   and a deep respect for every person's dignity — the trust's own words, reused as
                   the site's design brief.
@@ -471,7 +471,7 @@ export function HandsOfGraceCaseStudy({
                 {missionVision.map((item) => (
                   <div key={item.label} className="bg-paper p-6">
                     <p className="label-mono text-accent">{item.label}</p>
-                    <p className="mt-3 text-sm body-editorial">{item.body}</p>
+                    <p className="mt-3 text-sm leading-relaxed">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -507,7 +507,7 @@ export function HandsOfGraceCaseStudy({
                 <Reveal key={step.title}>
                   <div className="border-t border-hairline pt-4">
                     <p className="label-mono text-muted-foreground">{step.title}</p>
-                    <p className="mt-2 text-sm body-editorial text-muted-foreground">{step.body}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.body}</p>
                   </div>
                 </Reveal>
               ))}
@@ -519,7 +519,7 @@ export function HandsOfGraceCaseStudy({
         <section id="cs-impact" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
           <Shell>
             <SectionHeader index="05" label="Trust impact" title="Compassion you can count" invert />
-            <p className="mt-8 max-w-2xl body-editorial text-white/60">
+            <p className="mt-8 max-w-2xl leading-relaxed text-white/60">
               The site's own impact counters, animated on scroll with IntersectionObserver in the
               original build. Presented here exactly as the site states them.
             </p>
@@ -550,7 +550,7 @@ export function HandsOfGraceCaseStudy({
                     <div className="lg:col-span-5">
                       <h3 className="display-lg text-xl">{section.name}</h3>
                     </div>
-                    <p className="body-editorial text-muted-foreground lg:col-span-5 lg:col-start-8">
+                    <p className="leading-relaxed text-muted-foreground lg:col-span-5 lg:col-start-8">
                       {section.body}
                     </p>
                   </div>
@@ -569,7 +569,7 @@ export function HandsOfGraceCaseStudy({
                 <h2 className="display-xl text-[clamp(2.4rem,6vw,5.5rem)] uppercase leading-[0.9]">
                   Filter & read.
                 </h2>
-                <p className="mt-8 max-w-md body-editorial text-muted-foreground">
+                <p className="mt-8 max-w-md leading-relaxed text-muted-foreground">
                   The resources section is rendered from a single data array in script.js —
                   resourceItems — with filter chips for All / Reports / Guides / Trust Profile. The
                   trust's team can update the documents by editing one array, not the markup. Try
@@ -598,7 +598,7 @@ export function HandsOfGraceCaseStudy({
                 <h3 className="display-lg mt-3 text-2xl leading-tight">
                   Community Health & Prayer Camp
                 </h3>
-                <p className="mt-3 text-sm body-editorial text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   August 16, 2026 · 9:00 AM · Ministry Community Hall. Free wellness checks, prayer
                   support, family counseling, food assistance, and community lunch — with a live
                   countdown rendered by the site itself.
@@ -607,7 +607,7 @@ export function HandsOfGraceCaseStudy({
                   {forms.map(([form, fields]) => (
                     <div key={form} className="flex items-baseline justify-between gap-4 py-3.5">
                       <dt className="label-mono text-muted-foreground">{form}</dt>
-                      <dd className="text-right text-sm body-editorial">{fields}</dd>
+                      <dd className="text-right text-sm">{fields}</dd>
                     </div>
                   ))}
                 </dl>
@@ -624,7 +624,7 @@ export function HandsOfGraceCaseStudy({
                             +
                           </span>
                         </summary>
-                        <p className="pb-4 pl-4 pr-4 text-sm body-editorial text-muted-foreground">
+                        <p className="pb-4 pl-4 pr-4 text-sm leading-relaxed text-muted-foreground">
                           {a}
                         </p>
                       </details>
@@ -648,11 +648,11 @@ export function HandsOfGraceCaseStudy({
               {designLanguage.map(([label, value]) => (
                 <div key={label} className="bg-void p-6">
                   <p className="label-mono text-accent">{label}</p>
-                  <p className="mt-3 text-sm body-editorial text-white/70">{value}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/70">{value}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-8 max-w-2xl body-editorial text-white/60">
+            <p className="mt-8 max-w-2xl leading-relaxed text-white/60">
               The site's visual language is its own — navy, teal and gold on mist surfaces, with a
               fixed world-map backdrop. This case study re-presents it with the portfolio's paper
               and ink; the trust site itself keeps its own palette.
@@ -693,7 +693,7 @@ export function HandsOfGraceCaseStudy({
                 </div>
               ))}
             </div>
-            <p className="mt-10 max-w-2xl body-editorial text-muted-foreground">
+            <p className="mt-10 max-w-2xl leading-relaxed text-muted-foreground">
               The site is fully functional as a prototype — every interaction works locally, and the
               forms' success states are demos. No real donations, volunteer sign-ups or submissions
               have been processed through it.
@@ -720,7 +720,7 @@ export function HandsOfGraceCaseStudy({
             <div className="mt-12 grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-6">
                 <p className="label-mono text-muted-foreground">Limitations</p>
-                <p className="mt-3 text-sm body-editorial text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   A static prototype with no backend: form submissions are demonstrated in modals
                   rather than delivered, and donation, contact, founder and image details are
                   placeholders that the README requires to be replaced with verified trust
@@ -729,7 +729,7 @@ export function HandsOfGraceCaseStudy({
               </div>
               <div className="lg:col-span-5 lg:col-start-8">
                 <p className="label-mono text-muted-foreground">Next steps</p>
-                <p className="mt-3 text-sm body-editorial text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   Replace placeholders with verified trust details, wire the forms to a secure
                   delivery channel, and deploy with the service worker verified over HTTPS.
                 </p>
@@ -746,7 +746,7 @@ export function HandsOfGraceCaseStudy({
                 Serving humanity with grace, dignity, and hope.
               </p>
             </Reveal>
-            <p className="mt-8 max-w-xl body-editorial text-white/60">
+            <p className="mt-8 max-w-xl leading-relaxed text-white/60">
               Hands of Grace is a trust website that treats compassion as something to be shown and
               verified — every program, event, document and giving path in one responsive,
               installable prototype.

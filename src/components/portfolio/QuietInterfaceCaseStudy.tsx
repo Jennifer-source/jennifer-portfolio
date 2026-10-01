@@ -491,7 +491,7 @@ function MarkDemo() {
           <p className="label-mono text-muted-foreground">Task instructions</p>
         )}
       </div>
-      <p className="mt-4 max-w-[60ch] text-sm body-editorial text-muted-foreground">
+      <p className="mt-4 max-w-[60ch] text-sm leading-relaxed text-muted-foreground">
         Read the document, mark the three statements you consider most important, then add one
         short note.
       </p>
@@ -511,7 +511,7 @@ function MarkDemo() {
                 <span className="label-mono mt-1 shrink-0 text-muted-foreground tabular-nums">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="flex-1 text-sm body-editorial">{sentence}</span>
+                <span className="flex-1 text-sm leading-relaxed">{sentence}</span>
                 <span
                   className={`label-mono mt-1 shrink-0 border px-1.5 py-0.5 text-[9px] ${
                     marked ? "border-accent text-accent" : "border-hairline text-muted-foreground/60"
@@ -576,7 +576,7 @@ export function QuietInterfaceCaseStudy({
               <p className="display-lg text-[clamp(1.5rem,3vw,2.6rem)] leading-tight lg:col-span-7">
                 {project.positioning}
               </p>
-              <p className="text-lg body-editorial text-muted-foreground lg:col-span-4 lg:col-start-9">
+              <p className="text-lg leading-relaxed text-muted-foreground lg:col-span-4 lg:col-start-9">
                 An experimental interaction-design study exploring whether reducing visual
                 competition, simultaneous choices and unnecessary interaction can change the
                 experience of focused work. The prototype records observations only — it does not
@@ -611,7 +611,7 @@ export function QuietInterfaceCaseStudy({
               ].map(([k, v]) => (
                 <div key={k} className="border-t border-hairline pt-3">
                   <p className="label-mono text-muted-foreground">{k}</p>
-                  <p className="mt-1.5 text-sm body-editorial">{v}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed">{v}</p>
                 </div>
               ))}
             </div>
@@ -619,7 +619,7 @@ export function QuietInterfaceCaseStudy({
               {studyMeta.map(([term, detail]) => (
                 <div key={term}>
                   <dt className="label-mono text-muted-foreground">{term}</dt>
-                  <dd className="mt-3 text-[15px] body-editorial">{detail}</dd>
+                  <dd className="mt-3 text-[15px] leading-relaxed">{detail}</dd>
                 </div>
               ))}
             </dl>
@@ -636,7 +636,7 @@ export function QuietInterfaceCaseStudy({
                 {QUESTION}
               </p>
             </Reveal>
-            <p className="mt-10 max-w-2xl border-t border-white/15 pt-6 body-editorial text-white/60">
+            <p className="mt-10 max-w-2xl border-t border-white/15 pt-6 leading-relaxed text-white/60">
               A framing question for stage one, open by design. The study is built to explore it,
               not to settle it.
             </p>
@@ -658,7 +658,7 @@ export function QuietInterfaceCaseStudy({
                 {HYPOTHESIS}
               </h2>
             </Reveal>
-            <p className="mt-8 max-w-2xl border-t border-hairline pt-6 body-editorial text-muted-foreground">
+            <p className="mt-8 max-w-2xl border-t border-hairline pt-6 leading-relaxed text-muted-foreground">
               Stated as a hypothesis, not as a finding. The prototype is designed to explore
               whether differences in interface complexity are associated with differences in task
               performance and perceived experience — no effect is claimed.
@@ -679,7 +679,7 @@ export function QuietInterfaceCaseStudy({
                       <p className="label-mono text-foreground">
                         {condition.marker} — {condition.name}
                       </p>
-                      <p className="mt-3 max-w-sm text-sm body-editorial text-muted-foreground">
+                      <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
                         {condition.description}
                       </p>
                       <ul className="mt-4 max-w-md border-t border-hairline pt-3">
@@ -724,14 +724,14 @@ export function QuietInterfaceCaseStudy({
                     <h3 className="display-lg text-2xl">{step.title}</h3>
                   </div>
                   {"body" in step && step.body ? (
-                    <p className="mt-5 max-w-md body-editorial text-muted-foreground">
+                    <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">
                       {step.body}
                     </p>
                   ) : null}
                   {"items" in step && step.items ? (
                     <ul className="mt-5 max-w-md divide-y divide-hairline border-t border-hairline">
                       {step.items.map((item) => (
-                        <li key={item} className="flex items-baseline gap-3 py-2.5 text-sm body-editorial text-muted-foreground">
+                        <li key={item} className="flex items-baseline gap-3 py-2.5 text-sm text-muted-foreground">
                           <span aria-hidden="true" className="text-muted-foreground/50">
                             —
                           </span>
@@ -762,7 +762,7 @@ export function QuietInterfaceCaseStudy({
                     <h3 className="display-lg mt-3 text-2xl leading-tight">
                       Daylight and Alertness at Work
                     </h3>
-                    <p className="mt-1 text-sm body-editorial text-muted-foreground">
+                    <p className="mt-1 text-sm text-muted-foreground">
                       A short review, prepared for this study
                     </p>
                     <div className="mt-6 space-y-5">
@@ -771,7 +771,7 @@ export function QuietInterfaceCaseStudy({
                           <p className="label-mono text-muted-foreground">{paragraph.label}</p>
                           <ul className="mt-2 space-y-2">
                             {paragraph.sentences.map((sentence) => (
-                              <li key={sentence} className="text-[13px] body-editorial text-muted-foreground">
+                              <li key={sentence} className="text-[13px] leading-relaxed text-muted-foreground">
                                 {sentence}
                               </li>
                             ))}
@@ -779,7 +779,7 @@ export function QuietInterfaceCaseStudy({
                         </div>
                       ))}
                     </div>
-                    <p className="mt-6 border-t border-hairline pt-4 text-xs body-editorial text-muted-foreground">
+                    <p className="mt-6 border-t border-hairline pt-4 text-xs leading-relaxed text-muted-foreground">
                       Seven statements, deliberately about a subject outside the study's own
                       research question.
                     </p>
@@ -796,7 +796,7 @@ export function QuietInterfaceCaseStudy({
                         </span>
                         <h3 className="display-lg text-2xl">{item.title}</h3>
                       </div>
-                      <p className="mt-3 max-w-md body-editorial text-muted-foreground">
+                      <p className="mt-3 max-w-md leading-relaxed text-muted-foreground">
                         {item.detail}
                       </p>
                     </li>
@@ -841,7 +841,7 @@ export function QuietInterfaceCaseStudy({
                     </li>
                   ))}
                 </ul>
-                <p className="mt-4 max-w-md text-sm body-editorial text-muted-foreground">
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
                   The order of the two conditions is set in advance rather than chosen —
                   participants are never asked to pick.
                 </p>
@@ -854,12 +854,12 @@ export function QuietInterfaceCaseStudy({
                     "Responses stay in the browser session",
                     "No accounts and no analytics",
                   ].map((line) => (
-                    <li key={line} className="py-3.5 text-sm body-editorial text-muted-foreground">
+                    <li key={line} className="py-3.5 text-sm leading-relaxed text-muted-foreground">
                       {line}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-4 max-w-md text-sm body-editorial text-muted-foreground">
+                <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
                   Completing each condition once, on the same document, is what produces the
                   comparison.
                 </p>
@@ -879,7 +879,7 @@ export function QuietInterfaceCaseStudy({
                   <br />
                   Not four.
                 </h2>
-                <p className="mt-8 max-w-md body-editorial text-muted-foreground">
+                <p className="mt-8 max-w-md leading-relaxed text-muted-foreground">
                   The task's signature constraint: exactly three statements may be marked, and a
                   fourth attempt is refused until one is cleared. The constraint is identical in
                   both interface conditions — try it below, on the study's actual document.
@@ -902,7 +902,7 @@ export function QuietInterfaceCaseStudy({
         <section id="cs-instrumentation" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
           <Shell>
             <SectionHeader index="09" label="Instrumentation" title="What is recorded" invert />
-            <p className="mt-8 max-w-2xl body-editorial text-white/60">
+            <p className="mt-8 max-w-2xl leading-relaxed text-white/60">
               Anonymous measurement runs underneath the task. Per condition, the recorder keeps
               step timings, response scoring against the hidden answer key and interaction
               counts.
@@ -912,7 +912,7 @@ export function QuietInterfaceCaseStudy({
                 <p className="label-mono text-accent">Measures kept per condition</p>
                 <ul className="mt-4 grid gap-x-8 sm:grid-cols-2">
                   {recordedMeasures.map((measure) => (
-                    <li key={measure} className="border-t border-white/15 py-3 text-sm body-editorial text-white/70">
+                    <li key={measure} className="border-t border-white/15 py-3 text-sm text-white/70">
                       {measure}
                     </li>
                   ))}
@@ -930,7 +930,7 @@ export function QuietInterfaceCaseStudy({
                     </span>
                   ))}
                 </div>
-                <p className="mt-6 max-w-md border-t border-white/15 pt-5 text-sm body-editorial text-white/60">
+                <p className="mt-6 max-w-md border-t border-white/15 pt-5 text-sm leading-relaxed text-white/60">
                   Note contents are never recorded. Sessions are held in memory and tab storage
                   only — nothing is sent anywhere, and no identifying information is collected.
                 </p>
@@ -947,7 +947,7 @@ export function QuietInterfaceCaseStudy({
         <section className="bg-paper py-24">
           <Shell>
             <SectionHeader index="10" label="The two interfaces" title="Frame anatomy" />
-            <p className="mt-8 max-w-2xl body-editorial text-muted-foreground">
+            <p className="mt-8 max-w-2xl leading-relaxed text-muted-foreground">
               Both frames receive the identical controller, so the task itself never differs
               between conditions — only the interface wrapped around it.
             </p>
@@ -959,10 +959,10 @@ export function QuietInterfaceCaseStudy({
                     <span className="label-mono text-accent">{frame.marker}</span>
                     <h3 className="display-lg text-2xl uppercase">{frame.name}</h3>
                   </div>
-                  <p className="mt-4 max-w-md body-editorial text-muted-foreground">{frame.intro}</p>
+                  <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">{frame.intro}</p>
                   <ul className="mt-6 max-w-md divide-y divide-hairline border-t border-hairline">
                     {frame.items.map((item) => (
-                      <li key={item} className="flex items-baseline gap-3 py-2.5 text-sm body-editorial text-muted-foreground">
+                      <li key={item} className="flex items-baseline gap-3 py-2.5 text-sm text-muted-foreground">
                         <span aria-hidden="true" className="text-muted-foreground/50">
                           —
                         </span>
@@ -984,7 +984,7 @@ export function QuietInterfaceCaseStudy({
               {studyDesignSystem.map(([label, value]) => (
                 <div key={label} className="bg-paper p-6">
                   <p className="label-mono text-accent">{label}</p>
-                  <p className="mt-3 text-sm body-editorial">{value}</p>
+                  <p className="mt-3 text-sm leading-relaxed">{value}</p>
                 </div>
               ))}
             </div>
@@ -993,13 +993,13 @@ export function QuietInterfaceCaseStudy({
                 <p className="label-mono text-muted-foreground">Accessibility, as implemented</p>
                 <ul className="mt-4 grid gap-x-10 sm:grid-cols-2">
                   {studyA11y.map((item) => (
-                    <li key={item} className="border-t border-hairline py-3 text-sm body-editorial">
+                    <li key={item} className="border-t border-hairline py-3 text-sm">
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
-              <p className="text-sm body-editorial text-muted-foreground lg:col-span-4 lg:col-start-9">
+              <p className="text-sm leading-relaxed text-muted-foreground lg:col-span-4 lg:col-start-9">
                 No formal accessibility audit or compliance certification has been carried out —
                 the list above describes what the prototype itself implements.
               </p>
@@ -1024,7 +1024,7 @@ export function QuietInterfaceCaseStudy({
                     "A researcher development view for inspecting the instrumentation",
                     "Counterbalanced, researcher-controlled session orders",
                   ].map((line) => (
-                    <li key={line} className="border-t border-hairline py-3.5 text-sm body-editorial">
+                    <li key={line} className="border-t border-hairline py-3.5 text-sm leading-relaxed">
                       {line}
                     </li>
                   ))}
@@ -1038,7 +1038,7 @@ export function QuietInterfaceCaseStudy({
                     "Comparisons between conditions — none are drawn",
                     "Usability scores or outcomes — none are reported",
                   ].map((line) => (
-                    <li key={line} className="border-t border-hairline py-3.5 text-sm body-editorial">
+                    <li key={line} className="border-t border-hairline py-3.5 text-sm leading-relaxed">
                       {line}
                     </li>
                   ))}
@@ -1061,7 +1061,7 @@ export function QuietInterfaceCaseStudy({
                 ),
               )}
             </div>
-            <p className="mt-10 max-w-2xl body-editorial text-muted-foreground">
+            <p className="mt-10 max-w-2xl leading-relaxed text-muted-foreground">
               Because no sessions have been collected, this project reports no metrics — no
               completion times, no error rates, no preference results. What it demonstrates is a
               working experimental instrument: two honestly different interfaces, one constant
@@ -1089,7 +1089,7 @@ export function QuietInterfaceCaseStudy({
             <div className="mt-12 grid gap-10 lg:grid-cols-12">
               <div className="lg:col-span-6">
                 <p className="label-mono text-muted-foreground">Limitations</p>
-                <p className="mt-3 text-sm body-editorial text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   A small exploratory design, run locally: sessions live in memory and tab
                   storage, and stage one has no remote persistence. Nothing here has been tested
                   with participants, so nothing here is a finding.
@@ -1097,7 +1097,7 @@ export function QuietInterfaceCaseStudy({
               </div>
               <div className="lg:col-span-5 lg:col-start-8">
                 <p className="label-mono text-muted-foreground">Next steps</p>
-                <p className="mt-3 text-sm body-editorial text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   Run the task with participants, alternate the counterbalanced order between
                   sessions, and register a remote sink for sessions — the recorder is built so
                   persistence can be swapped in without touching the interface.
@@ -1115,7 +1115,7 @@ export function QuietInterfaceCaseStudy({
                 Two interfaces. One task. No conclusions — yet.
               </p>
             </Reveal>
-            <p className="mt-8 max-w-xl body-editorial text-white/60">
+            <p className="mt-8 max-w-xl leading-relaxed text-white/60">
               Quiet Interface is a research instrument first and a portfolio piece second: it
               demonstrates how a study can be built to explore a question without ever being
               allowed to answer it prematurely.
