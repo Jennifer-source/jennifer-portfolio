@@ -66,7 +66,7 @@ export function SelectedWork() {
         <SectionHeader index="03" label="What I create" title="Selected work" />
         <Reveal>
           <h2 className="display-xl mt-10 max-w-[14ch] text-[clamp(2.2rem,6vw,5.5rem)]">
-            Five projects, five different problems.
+            Six projects, six different problems.
           </h2>
         </Reveal>
         <div className="mt-16">

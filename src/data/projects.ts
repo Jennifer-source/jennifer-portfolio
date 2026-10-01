@@ -8,6 +8,7 @@ import mobileImg from "@/assets/work-mobile.jpg";
 import typoImg from "@/assets/work-typo.jpg";
 import labImg from "@/assets/work-lab.jpg";
 import belongImg from "@/assets/work-belong.jpg";
+import quietImg from "@/assets/quiet-interface.svg";
 
 export type Insight = { n: string; title: string; body: string };
 export type ProcessStep = { title: string; caption: string; learned: string };
@@ -354,6 +355,40 @@ export const projects: Project[] = [
     reflection: "It's the most technically ambitious thing I've built and the least useful — and both facts taught me something worth keeping.",
     limitations: "No accessibility testing with screen reader users yet; the fallback view is untested.",
     nextSteps: "Test the tabular fallback properly and profile rendering performance.",
+  },
+  {
+    // Quiet Interface — github.com/Jennifer-source/quiet-interface-main.
+    // Rendered by the dedicated QuietInterfaceCaseStudy component (Belong
+    // pattern), so the generic case-study fields stay empty.
+    id: "quiet",
+    index: "06",
+    title: "Quiet Interface",
+    slug: "quiet-interface",
+    year: "2026",
+    category: "HCI / Interaction Design Research",
+    description:
+      "An experimental study of interface complexity: one standardized focus task, run inside two interface conditions.",
+    positioning: "Investigating how interface complexity affects focused digital work.",
+    role: "Designer, researcher & developer",
+    timeline: "Personal research prototype · stage one",
+    team: "Individual research prototype",
+    tools: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    heroImage: quietImg,
+    thumbnail: quietImg,
+    tone: "light",
+    challenge: "",
+    context: "",
+    research: [],
+    insights: [],
+    hmw: [],
+    principles: [],
+    process: [],
+    designSystem: [],
+    finalScreens: [],
+    outcome: [],
+    reflection: "",
+    limitations: "",
+    nextSteps: "",
   },
 ];
 

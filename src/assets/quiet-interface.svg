@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="Quiet Interface — sparse interface preview: one column, one primary control">
+  <!-- paper -->
+  <rect width="1600" height="1000" fill="#F7F5F0"/>
+
+  <!-- header bar -->
+  <line x1="0" y1="84" x2="1600" y2="84" stroke="#DAD6CC" stroke-width="2"/>
+  <text x="64" y="54" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="21" letter-spacing="7" fill="#1C1A18">QUIET INTERFACE</text>
+  <circle cx="1536" cy="47" r="7" fill="#C7431F"/>
+
+  <!-- centered single column (72% width, as in the study's preview mock) -->
+  <g>
+    <!-- accent rule -->
+    <rect x="224" y="296" width="48" height="3" fill="#C7431F"/>
+    <!-- title bar -->
+    <rect x="224" y="338" width="768" height="17" fill="#1C1A18"/>
+    <!-- body lines: full, 11/12 -->
+    <rect x="224" y="382" width="1152" height="12" fill="#C6C2B8"/>
+    <rect x="224" y="409" width="1056" height="12" fill="#C6C2B8"/>
+    <!-- marked statement (accent at 50%) -->
+    <rect x="224" y="436" width="1152" height="12" fill="#C7431F" fill-opacity="0.5"/>
+    <!-- body line: 9/12 -->
+    <rect x="224" y="463" width="864" height="12" fill="#C6C2B8"/>
+
+    <!-- primary control chip -->
+    <rect x="224" y="532" width="252" height="46" fill="none" stroke="#B4B0A6" stroke-width="2"/>
+    <text x="350" y="561" text-anchor="middle" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" letter-spacing="3.4" fill="#1C1A18">MARK STATEMENT</text>
+  </g>
+
+  <!-- footer bar -->
+  <line x1="0" y1="918" x2="1600" y2="918" stroke="#DAD6CC" stroke-width="2"/>
+  <text x="64" y="963" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="14" letter-spacing="3.2" fill="#8A867C">ONE TASK AT A TIME</text>
+</svg>
