@@ -18,7 +18,7 @@ function Meta({ label, value }: { label: string; value: string }) {
   return (
     <div className="border-t border-hairline pt-3">
       <p className="label-mono text-muted-foreground">{label}</p>
-      <p className="mt-1.5 text-sm leading-relaxed">{value}</p>
+      <p className="mt-1.5 text-sm font-mono leading-relaxed">{value}</p>
     </div>
   );
 }
@@ -36,7 +36,7 @@ export default function CaseStudy() {
       <div className="flex min-h-screen items-center justify-center bg-background px-4">
         <div className="max-w-md text-center">
           <h1 className="display-xl text-7xl">404</h1>
-          <p className="mt-4 text-sm text-muted-foreground">
+          <p className="mt-4 text-sm font-mono text-muted-foreground">
             The case study you're looking for doesn't exist or has been moved.
           </p>
           <Link to="/" className="label-mono link-underline mt-6 inline-block">
@@ -90,7 +90,7 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
             <h1 className="display-xl mt-6 text-[clamp(2.6rem,10vw,10rem)]">
               <RevealWords text={project.title} />
             </h1>
-            <p className="mt-8 max-w-2xl text-xl leading-snug sm:text-2xl">{project.positioning}</p>
+            <p className="mt-8 max-w-2xl text-xl font-mono leading-snug sm:text-2xl">{project.positioning}</p>
           </Shell>
           <div className="mt-12 overflow-hidden">
             <motion.img
@@ -113,9 +113,9 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
             <div className="mt-10 grid gap-12 lg:grid-cols-12">
               <Reveal className="lg:col-span-7">
                 <h2 className="display-lg text-2xl uppercase">The challenge</h2>
-                <p className="mt-4 text-lg leading-relaxed">{project.challenge}</p>
+                <p className="mt-4 text-lg font-mono leading-relaxed">{project.challenge}</p>
                 <h2 className="display-lg mt-10 text-2xl uppercase">The context</h2>
-                <p className="mt-4 leading-relaxed text-muted-foreground">{project.context}</p>
+                <p className="mt-4 font-mono leading-relaxed text-muted-foreground">{project.context}</p>
               </Reveal>
               <div className="grid gap-6 self-start lg:col-span-4 lg:col-start-9">
                 <Meta label="My role" value={project.role} />
@@ -137,7 +137,7 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
                   <div className="h-full border border-hairline p-5">
                     <p className="label-mono text-accent">{String(i + 1).padStart(2, "0")}</p>
                     <h3 className="display-lg mt-3 text-lg">{r.method}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{r.detail}</p>
+                    <p className="mt-2 text-sm font-mono text-muted-foreground">{r.detail}</p>
                   </div>
                 </Reveal>
               ))}
@@ -174,7 +174,7 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
                 <h2 className="display-lg text-2xl uppercase">How might we</h2>
                 <ul className="mt-6 space-y-5">
                   {project.hmw.map((h) => (
-                    <li key={h} className="border-l-2 border-accent pl-5 text-lg leading-snug">
+                    <li key={h} className="border-l-2 border-accent pl-5 text-lg font-mono leading-snug">
                       {h}
                     </li>
                   ))}
@@ -187,7 +187,7 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
                     <Reveal key={p.title} delay={i * 0.05}>
                       <li className="border-b border-hairline py-4">
                         <p className="display-lg text-lg">{p.title}</p>
-                        <p className="mt-1 text-sm text-muted-foreground">{p.body}</p>
+                        <p className="mt-1 text-sm font-mono text-muted-foreground">{p.body}</p>
                       </li>
                     </Reveal>
                   ))}
@@ -210,9 +210,9 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
                     </span>
                     <div className="lg:col-span-5">
                       <h3 className="display-lg text-xl">{step.title}</h3>
-                      <p className="mt-2 text-sm text-muted-foreground">{step.caption}</p>
+                      <p className="mt-2 text-sm font-mono text-muted-foreground">{step.caption}</p>
                     </div>
-                    <p className="leading-relaxed lg:col-span-5 lg:col-start-8">{step.learned}</p>
+                    <p className="font-mono leading-relaxed lg:col-span-5 lg:col-start-8">{step.learned}</p>
                   </div>
                 </Reveal>
               ))}
@@ -228,7 +228,7 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
               {project.designSystem.map((d) => (
                 <div key={d.label} className="bg-paper p-6">
                   <p className="label-mono text-accent">{d.label}</p>
-                  <p className="mt-3 leading-relaxed">{d.value}</p>
+                  <p className="mt-3 font-mono leading-relaxed">{d.value}</p>
                 </div>
               ))}
             </div>
@@ -258,7 +258,7 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
                     <figcaption className="lg:col-span-3">
                       <p className="label-mono text-accent">{String(i + 1).padStart(2, "0")}</p>
                       <h3 className="display-lg mt-2 text-xl uppercase">{s.title}</h3>
-                      <p className="mt-2 text-sm text-white/60">{s.caption}</p>
+                      <p className="mt-2 text-sm font-mono text-white/60">{s.caption}</p>
                     </figcaption>
                   </figure>
                 </Reveal>
@@ -278,24 +278,24 @@ function GenericCaseStudy({ projectId }: { projectId: string }) {
                     <Reveal key={o.label}>
                       <li className="border-b border-hairline py-6">
                         <p className="label-mono text-accent">{o.label}</p>
-                        <p className="mt-2 text-lg leading-relaxed">{o.body}</p>
+                        <p className="mt-2 text-lg font-mono leading-relaxed">{o.body}</p>
                       </li>
                     </Reveal>
                   ))}
                 </ul>
               </div>
               <Reveal className="lg:col-span-4 lg:col-start-9">
-                <blockquote className="border-l-2 border-accent pl-5 text-lg italic leading-snug">
+                <blockquote className="border-l-2 border-accent pl-5 text-lg italic font-mono leading-snug">
                   {project.reflection}
                 </blockquote>
                 <div className="mt-8 space-y-6">
                   <div>
                     <p className="label-mono text-muted-foreground">Limitations</p>
-                    <p className="mt-2 text-sm leading-relaxed">{project.limitations}</p>
+                    <p className="mt-2 text-sm font-mono leading-relaxed">{project.limitations}</p>
                   </div>
                   <div>
                     <p className="label-mono text-muted-foreground">Next steps</p>
-                    <p className="mt-2 text-sm leading-relaxed">{project.nextSteps}</p>
+                    <p className="mt-2 text-sm font-mono leading-relaxed">{project.nextSteps}</p>
                   </div>
                 </div>
               </Reveal>

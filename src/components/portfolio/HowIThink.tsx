@@ -63,7 +63,7 @@ export function HowIThink() {
                 <br />
                 not a<span className="text-accent"> ritual.</span>
               </h2>
-              <p className="mt-6 max-w-sm text-muted-foreground">
+              <p className="mt-6 max-w-sm font-mono text-muted-foreground">
                 These stages overlap, repeat and occasionally run backwards. Select one to see the
                 question I ask, the methods I use, and what I hand over.
               </p>
@@ -106,7 +106,7 @@ export function HowIThink() {
                         className="overflow-hidden"
                       >
                         <div className="grid gap-8 pb-8 sm:grid-cols-3">
-                          <p className="text-lg italic leading-snug sm:col-span-3">
+                          <p className="text-lg italic font-mono leading-snug sm:col-span-3">
                             “{stage.question}”
                           </p>
                           <div>

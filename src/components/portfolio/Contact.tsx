@@ -72,7 +72,7 @@ export function Contact() {
                 </Reveal>
               ))}
             </ul>
-            <p className="mt-6 text-sm text-muted-foreground">
+            <p className="mt-6 text-sm font-mono text-muted-foreground">
               Open to internships, design programmes, research collaborations and studio work.
             </p>
           </div>

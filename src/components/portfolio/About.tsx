@@ -37,7 +37,7 @@ export function About() {
               <RevealWords text="by default." delay={0.12} />
             </h2>
             <Reveal delay={0.2}>
-              <p className="mt-8 max-w-xl text-lg leading-relaxed">
+              <p className="mt-8 max-w-xl text-lg font-mono leading-relaxed">
                 I'm Joseph Jennifer — a UI/UX designer and creative technologist who treats research,
                 typography and code as one continuous material.
               </p>
@@ -48,7 +48,7 @@ export function About() {
                   <div className="border-t border-hairline pt-5">
                     <span className="label-mono text-accent">{c.n}</span>
                     <h3 className="display-lg mt-2 text-xl uppercase">{c.t}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.b}</p>
+                    <p className="mt-3 text-sm font-mono leading-relaxed text-muted-foreground">{c.b}</p>
                   </div>
                 </Reveal>
               ))}
