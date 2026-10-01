@@ -5,7 +5,14 @@ import type { Project } from "@/data/projects";
 import graceImg from "@/assets/hands-of-grace-hero.svg";
 import { Cursor } from "./Cursor";
 import { Footer } from "./Footer";
-import { Reveal, RevealWords, SectionHeader, Shell } from "./primitives";
+import {
+  CaseStudyNav,
+  CaseStudyOverview,
+  Reveal,
+  RevealWords,
+  SectionHeader,
+  Shell,
+} from "./primitives";
 
 /**
  * HANDS OF GRACE — github.com/Jennifer-source/hands-of-Grace
@@ -211,6 +218,51 @@ const reflections = [
   "The README's own rule is respected throughout: donation, contact, founder and image details are placeholders that must be replaced with verified trust information before launch.",
 ] as const;
 
+/** Level 1 — the whole project story, recomposed from the sections below. */
+const overviewSteps = [
+  {
+    label: "Project",
+    headline: "A trust website for Hands of Grace International Ministries Trust.",
+    body: "A responsive static prototype: cinematic homepage, storytelling, impact counters, events, resources, forms, dark mode, PWA.",
+  },
+  {
+    label: "Problem",
+    headline: "A charity's work must be verifiable, not just visible.",
+    body: "Donors, volunteers and partners need one trustworthy place that shows the programs, documents and giving paths.",
+  },
+  {
+    label: "Role",
+    headline: "Designer & developer of the full prototype.",
+    body: "Individual project — structure, interface, interactions and the PWA build.",
+  },
+  {
+    label: "Approach",
+    headline: "Accountability surface before marketing surface.",
+    body: "Every section placed to make the work checkable — programs, events, resources, FAQ, and giving details in one flow.",
+  },
+  {
+    label: "Solution",
+    headline: "A working site — installable, themed, filterable.",
+    body: "Resource cards rendered from one data array with filters, plus lightbox gallery, countdown, dark mode and a service worker.",
+  },
+  {
+    label: "Outcome",
+    headline: "A functional prototype with honest placeholders.",
+    body: "Every interaction works locally; trust details are placeholders pending verified information before launch.",
+  },
+] as const;
+
+const navItems = [
+  { id: "cs-overview", label: "Overview" },
+  { id: "cs-mission", label: "Mission" },
+  { id: "cs-journey", label: "Journey" },
+  { id: "cs-impact", label: "Impact" },
+  { id: "cs-build", label: "Build" },
+  { id: "cs-signature", label: "Signature" },
+  { id: "cs-language", label: "Language" },
+  { id: "cs-reflection", label: "Reflection" },
+] as const;
+
 /* ------------------------------------------------------------------ */
 /* Interactive recreation of the site's filterable resources section:  */
 /* the same four cards, rendered from the same shape of data, with the */
@@ -324,9 +376,10 @@ export function HandsOfGraceCaseStudy({
         </section>
 
         {/* 01 OVERVIEW */}
-        <section className="bg-paper py-20">
+        <section id="cs-overview" className="bg-paper py-20">
           <Shell>
             <SectionHeader index="01" label="Overview" title="Project" />
+            <CaseStudyNav items={navItems} className="mt-6" />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 ["Role", project.role],
@@ -355,11 +408,12 @@ export function HandsOfGraceCaseStudy({
                 </div>
               ))}
             </dl>
+            <CaseStudyOverview steps={overviewSteps} className="mt-14" />
           </Shell>
         </section>
 
         {/* 02 MISSION QUOTE (dark) */}
-        <section data-tone="dark" className="grain-light bg-void py-28 text-void-foreground">
+        <section id="cs-mission" data-tone="dark" className="grain-light bg-void py-28 text-void-foreground">
           <Shell>
             <SectionHeader index="02" label="The mission" invert />
             <Reveal>
@@ -426,7 +480,7 @@ export function HandsOfGraceCaseStudy({
         </section>
 
         {/* 04 JOURNEY */}
-        <section className="bg-paper pb-24">
+        <section id="cs-journey" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="04" label="Our journey" title="A story of grace becoming service" />
             <ol className="mt-10">
@@ -462,7 +516,7 @@ export function HandsOfGraceCaseStudy({
         </section>
 
         {/* 05 IMPACT (dark) */}
-        <section data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
+        <section id="cs-impact" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
           <Shell>
             <SectionHeader index="05" label="Trust impact" title="Compassion you can count" invert />
             <p className="mt-8 max-w-2xl leading-relaxed text-white/60">
@@ -483,7 +537,7 @@ export function HandsOfGraceCaseStudy({
         </section>
 
         {/* 06 SITE SECTIONS */}
-        <section className="bg-paper pb-24">
+        <section id="cs-build" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="06" label="The build" title="Site sections" />
             <div className="mt-10 space-y-px">
@@ -507,7 +561,7 @@ export function HandsOfGraceCaseStudy({
         </section>
 
         {/* 07 SIGNATURE INTERACTION */}
-        <section className="bg-paper pb-24">
+        <section id="cs-signature" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="07" label="Interaction / prototype" title="Resources, filterable" />
             <div className="mt-12 grid gap-14 lg:grid-cols-12">
@@ -587,7 +641,7 @@ export function HandsOfGraceCaseStudy({
         </section>
 
         {/* 09 DESIGN LANGUAGE (dark) */}
-        <section data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
+        <section id="cs-language" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
           <Shell>
             <SectionHeader index="09" label="Design language" title="The site's own system" invert />
             <div className="mt-10 grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-3">
@@ -648,7 +702,7 @@ export function HandsOfGraceCaseStudy({
         </section>
 
         {/* 12 REFLECTION */}
-        <section className="bg-paper pb-24">
+        <section id="cs-reflection" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="12" label="Reflection" title="Design learnings" />
             <ol className="mt-10">

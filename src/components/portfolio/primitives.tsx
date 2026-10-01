@@ -96,3 +96,86 @@ export function Shell({ children, className = "" }: { children: ReactNode; class
     </div>
   );
 }
+
+/* ------------------------------------------------------------------ */
+/* Case-study helpers — Level 1 overview + section jump nav.           */
+/* Both reuse the existing token system (label-mono, display-lg,       */
+/* hairline gap-px grids, link-underline); no new CSS is introduced.   */
+/* ------------------------------------------------------------------ */
+
+export type CaseStudyStep = { label: string; headline: string; body?: string };
+
+/** Level 1 — the whole project story in six scannable cells. */
+export function CaseStudyOverview({
+  steps,
+  invert,
+  className = "",
+}: {
+  steps: readonly CaseStudyStep[];
+  invert?: boolean;
+  className?: string;
+}) {
+  return (
+    <div className={className}>
+      <div className="flex flex-wrap items-baseline justify-between gap-4">
+        <p className="label-mono text-accent">The short version</p>
+        <p className={`label-mono ${invert ? "text-white/40" : "text-muted-foreground"}`}>
+          Six answers before the deep dive
+        </p>
+      </div>
+      <div
+        className={`mt-6 grid gap-px border sm:grid-cols-2 lg:grid-cols-3 ${
+          invert ? "border-white/15 bg-white/15" : "border-hairline bg-hairline"
+        }`}
+      >
+        {steps.map((step) => (
+          <div key={step.label} className={invert ? "bg-void p-6" : "bg-paper p-6"}>
+            <p className="label-mono text-accent">{step.label}</p>
+            <p className="display-lg mt-3 text-lg leading-snug">{step.headline}</p>
+            {step.body ? (
+              <p
+                className={`mt-2 text-sm leading-relaxed ${
+                  invert ? "text-white/60" : "text-muted-foreground"
+                }`}
+              >
+                {step.body}
+              </p>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/** Lightweight jump row — where am I in this case study? */
+export function CaseStudyNav({
+  items,
+  invert,
+  className = "",
+}: {
+  items: readonly { id: string; label: string }[];
+  invert?: boolean;
+  className?: string;
+}) {
+  return (
+    <nav
+      aria-label="Case study sections"
+      className={`flex flex-wrap gap-x-7 gap-y-2.5 border-t pt-4 ${
+        invert ? "border-white/15" : "border-hairline"
+      } ${className}`}
+    >
+      {items.map((item) => (
+        <a
+          key={item.id}
+          href={`#${item.id}`}
+          className={`label-mono link-underline transition-colors ${
+            invert ? "text-white/60 hover:text-white" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  );
+}

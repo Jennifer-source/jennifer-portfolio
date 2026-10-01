@@ -4,7 +4,14 @@ import { motion, useScroll, useSpring } from "framer-motion";
 import type { Project } from "@/data/projects";
 import { Cursor } from "./Cursor";
 import { Footer } from "./Footer";
-import { Reveal, RevealWords, SectionHeader, Shell } from "./primitives";
+import {
+  CaseStudyNav,
+  CaseStudyOverview,
+  Reveal,
+  RevealWords,
+  SectionHeader,
+  Shell,
+} from "./primitives";
 
 const QUESTION =
   "How might interaction design help international students feel oriented, connected, and confident during their first weeks in a new country?";
@@ -93,6 +100,50 @@ const traceability = [
 ];
 
 const screens = ["Welcome", "Onboarding", "Home", "Explore", "Community", "Help", "Research"];
+
+/** Level 1 — the whole project story, recomposed from the sections below. */
+const overviewSteps = [
+  {
+    label: "Project",
+    headline: "An HCI concept that treats uncertainty as the design problem.",
+    body: "A research-driven interaction design concept helping international students navigate their first weeks in a new country.",
+  },
+  {
+    label: "Problem",
+    headline: "Unfamiliar systems and social rules arrive all at once.",
+    body: "Not simply “finding information” — a problem of understanding: what something means, why it matters, and what to do next.",
+  },
+  {
+    label: "Role",
+    headline: "UX/UI design and HCI research, end to end.",
+    body: "One designer-researcher framing the problem, deriving the hypotheses, and designing every response.",
+  },
+  {
+    label: "Approach",
+    headline: "Seven hypotheses, stated before pixels.",
+    body: "A planned research path — interviews, affinity and journey mapping, moderated usability testing — with each response traceable to a hypothesis.",
+  },
+  {
+    label: "Solution",
+    headline: "“Explain this” — five levels of user-controlled depth.",
+    body: "Progressive disclosure plus visible social expectations, a private uncertainty check-in, and a designed path from self-service to human help.",
+  },
+  {
+    label: "Outcome",
+    headline: "A working concept prototype — evaluation still to come.",
+    body: "“Testing results have not yet been collected.” What it demonstrates now is the traceability of every decision.",
+  },
+] as const;
+
+const navItems = [
+  { id: "cs-overview", label: "Overview" },
+  { id: "cs-context", label: "Context" },
+  { id: "cs-question", label: "Question" },
+  { id: "cs-research", label: "Research" },
+  { id: "cs-signature", label: "Signature" },
+  { id: "cs-prototype", label: "Prototype" },
+  { id: "cs-reflection", label: "Reflection" },
+] as const;
 
 function Phone({ children, label }: { children: React.ReactNode; label: string }) {
   return (
@@ -247,9 +298,10 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
         </section>
 
         {/* 2 OVERVIEW */}
-        <section className="bg-paper py-20">
+        <section id="cs-overview" className="bg-paper py-20">
           <Shell>
             <SectionHeader index="01" label="Overview" title="Project" />
+            <CaseStudyNav items={navItems} className="mt-6" />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 ["Role", "UX/UI Designer · HCI Researcher"],
@@ -263,11 +315,12 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
                 </div>
               ))}
             </div>
+            <CaseStudyOverview steps={overviewSteps} className="mt-14" />
           </Shell>
         </section>
 
         {/* 3 CONTEXT */}
-        <section className="bg-paper pb-24">
+        <section id="cs-context" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="02" label="The context" title="Problem space" />
             <div className="mt-10 grid gap-12 lg:grid-cols-12">
@@ -303,7 +356,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
         </section>
 
         {/* 4 QUESTION */}
-        <section data-tone="dark" className="grain-light bg-void py-28 text-void-foreground">
+        <section id="cs-question" data-tone="dark" className="grain-light bg-void py-28 text-void-foreground">
           <Shell>
             <SectionHeader index="03" label="The design question" invert />
             <Reveal>
@@ -315,7 +368,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
         </section>
 
         {/* 5 RESEARCH PLAN */}
-        <section className="bg-paper py-24">
+        <section id="cs-research" className="bg-paper py-24">
           <Shell>
             <SectionHeader index="04" label="Research approach" title="Research plan" />
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -388,7 +441,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
         </section>
 
         {/* 8 SIGNATURE */}
-        <section className="bg-background py-24">
+        <section id="cs-signature" className="bg-background py-24">
           <Shell>
             <SectionHeader index="07" label="Signature interaction" title="Explain this" />
             <div className="mt-12 grid items-center gap-14 lg:grid-cols-12">
@@ -496,7 +549,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
         </section>
 
         {/* 13 PROTOTYPE */}
-        <section data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
+        <section id="cs-prototype" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
           <Shell>
             <SectionHeader index="11" label="Prototype" title="Screens" invert />
             <div className="mt-12 grid grid-cols-2 gap-px border border-white/15 bg-white/15 sm:grid-cols-4 lg:grid-cols-7">
@@ -588,7 +641,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
         </section>
 
         {/* 16 REFLECTION */}
-        <section className="bg-paper py-24">
+        <section id="cs-reflection" className="bg-paper py-24">
           <Shell>
             <SectionHeader index="14" label="Reflection" title="Design learnings, not participant findings" />
             <ol className="mt-10">

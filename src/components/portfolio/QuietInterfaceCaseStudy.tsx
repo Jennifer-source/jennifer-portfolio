@@ -5,7 +5,14 @@ import type { Project } from "@/data/projects";
 import quietImg from "@/assets/quiet-interface.svg";
 import { Cursor } from "./Cursor";
 import { Footer } from "./Footer";
-import { Reveal, RevealWords, SectionHeader, Shell } from "./primitives";
+import {
+  CaseStudyNav,
+  CaseStudyOverview,
+  Reveal,
+  RevealWords,
+  SectionHeader,
+  Shell,
+} from "./primitives";
 
 /**
  * QUIET INTERFACE — github.com/Jennifer-source/quiet-interface-main
@@ -237,6 +244,51 @@ const studyA11y = [
   "Confirmation moves focus to its heading",
   "In-page navigation respects prefers-reduced-motion",
   "The prototype records no identifying data",
+] as const;
+
+/** Level 1 — the whole study story, recomposed from the sections below. */
+const overviewSteps = [
+  {
+    label: "Project",
+    headline: "An experimental study of interface complexity.",
+    body: "One standardized focus task — read, mark, note, submit — run inside two interface conditions.",
+  },
+  {
+    label: "Problem",
+    headline: "Interfaces can overload the very work they are meant to support.",
+    body: "“How might interface design reduce cognitive overload during focused digital tasks?” — the framing question for stage one.",
+  },
+  {
+    label: "Role",
+    headline: "Designer, researcher & developer.",
+    body: "An individual research prototype — the study's instrument built end to end.",
+  },
+  {
+    label: "Approach",
+    headline: "One constant task, two honestly different interfaces.",
+    body: "Conventional and Quiet frames around an identical controller, with counterbalanced orders and anonymity by design.",
+  },
+  {
+    label: "Solution",
+    headline: "A working instrument, not a claim.",
+    body: "The signature constraint — three marks, a fourth refused — plus anonymous per-condition observation recording.",
+  },
+  {
+    label: "Outcome",
+    headline: "Built and running — no participant data yet.",
+    body: "“Participant data has not yet been collected.” No findings are reported; what exists is the instrument itself.",
+  },
+] as const;
+
+const navItems = [
+  { id: "cs-overview", label: "Overview" },
+  { id: "cs-question", label: "Question" },
+  { id: "cs-conditions", label: "Conditions" },
+  { id: "cs-method", label: "Method" },
+  { id: "cs-task", label: "Task" },
+  { id: "cs-signature", label: "Signature" },
+  { id: "cs-instrumentation", label: "Instrumentation" },
+  { id: "cs-reflection", label: "Reflection" },
 ] as const;
 
 const reflections = [
@@ -546,9 +598,10 @@ export function QuietInterfaceCaseStudy({
         </section>
 
         {/* 01 OVERVIEW */}
-        <section className="bg-paper py-20">
+        <section id="cs-overview" className="bg-paper py-20">
           <Shell>
             <SectionHeader index="01" label="Overview" title="Study" />
+            <CaseStudyNav items={navItems} className="mt-6" />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 ["Role", project.role],
@@ -570,11 +623,12 @@ export function QuietInterfaceCaseStudy({
                 </div>
               ))}
             </dl>
+            <CaseStudyOverview steps={overviewSteps} className="mt-14" />
           </Shell>
         </section>
 
         {/* 02 RESEARCH QUESTION */}
-        <section data-tone="dark" className="grain-light bg-void py-28 text-void-foreground">
+        <section id="cs-question" data-tone="dark" className="grain-light bg-void py-28 text-void-foreground">
           <Shell>
             <SectionHeader index="02" label="The research question" invert />
             <Reveal>
@@ -613,7 +667,7 @@ export function QuietInterfaceCaseStudy({
         </section>
 
         {/* 04 CONDITIONS */}
-        <section className="bg-paper pb-24">
+        <section id="cs-conditions" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="04" label="Two interface conditions" title="Same task" />
             <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-10">
@@ -654,7 +708,7 @@ export function QuietInterfaceCaseStudy({
         </section>
 
         {/* 05 METHOD */}
-        <section className="bg-paper pb-24">
+        <section id="cs-method" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="05" label="Method" title="How the study is structured" />
             <ol className="mt-10 grid border-t border-hairline lg:grid-cols-2">
@@ -697,7 +751,7 @@ export function QuietInterfaceCaseStudy({
         </section>
 
         {/* 06 THE STANDARDIZED TASK */}
-        <section className="bg-paper pb-24">
+        <section id="cs-task" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="06" label="The standardized task" title="Read · Mark · Note · Submit" />
             <div className="mt-10 grid gap-12 lg:grid-cols-12">
@@ -815,7 +869,7 @@ export function QuietInterfaceCaseStudy({
         </section>
 
         {/* 08 SIGNATURE INTERACTION */}
-        <section className="bg-paper pb-24">
+        <section id="cs-signature" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="08" label="Interaction / prototype" title="Three marks, not four" />
             <div className="mt-12 grid gap-14 lg:grid-cols-12">
@@ -845,7 +899,7 @@ export function QuietInterfaceCaseStudy({
         </section>
 
         {/* 09 INSTRUMENTATION */}
-        <section data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
+        <section id="cs-instrumentation" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
           <Shell>
             <SectionHeader index="09" label="Instrumentation" title="What is recorded" invert />
             <p className="mt-8 max-w-2xl leading-relaxed text-white/60">
@@ -1017,7 +1071,7 @@ export function QuietInterfaceCaseStudy({
         </section>
 
         {/* 14 REFLECTION */}
-        <section className="bg-paper pb-24">
+        <section id="cs-reflection" className="bg-paper pb-24">
           <Shell>
             <SectionHeader index="14" label="Reflection" title="Design learnings, not findings" />
             <ol className="mt-10">
