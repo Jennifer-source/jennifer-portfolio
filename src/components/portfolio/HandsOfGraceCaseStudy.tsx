@@ -2,7 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { motion, useScroll, useSpring } from "framer-motion";
 import type { Project } from "@/data/projects";
-import graceImg from "@/assets/hands-of-grace-hero.svg";
+import graceHero from "@/assets/grace-hero-design.png";
+import graceFounder1 from "@/assets/grace-founder-1.jpg";
+import graceFounder2 from "@/assets/grace-founder-2.jpg";
+import graceCofounder from "@/assets/grace-cofounder.jpg";
+import graceFrag from "@/assets/grace-frag.jpg";
 import { Cursor } from "./Cursor";
 import { Footer } from "./Footer";
 import {
@@ -15,240 +19,139 @@ import {
 } from "./primitives";
 
 /**
- * HANDS OF GRACE — github.com/Jennifer-source/hands-of-Grace
+ * HANDS OF GRACE — github.com/Jennifer-source/ngo-website
  *
- * Every fact below is taken from the project's own source of truth: the
- * mission and hero copy (index.html), the journey timeline, the impact
- * counters (index.html + the counter animation in script.js), the featured
- * event and countdown, the trust badges, the mission/vision/values band,
- * the resource cards (script.js resourceItems), FAQ answers, donation
- * details, the three founder profile cards, the volunteer/prayer/contact/
- * newsletter forms, and the feature list in README.md (lightbox, dark mode,
- * PWA, service worker). No verified trust information exists in the
- * repository, so placeholder names, contact details and bank details are
- * described as placeholders — exactly as the README itself instructs.
- * No metrics are claimed beyond the site's own impact counters.
+ * Every fact below is taken from the project's own source of truth:
+ * src/content/site.ts (single source for all visible content), the
+ * component map in PROJECT_MASTER_DOCUMENT.md and the DESIGN_SYSTEM.md.
+ * The ministry's own hero artwork (marked verified in site.ts), the four
+ * recorded impact figures, three named founders, seven serve pathways,
+ * the documentary film and the donation flow are used as-is. Journey
+ * dates, impact stories and bank details are honest editable
+ * placeholders in the site itself — described here as placeholders,
+ * never as facts. No research, testing or invented metrics.
+ * No Three.js claim: the repo lists it, the code never uses it.
  */
 
-const REPO_URL = "https://github.com/Jennifer-source/hands-of-Grace";
+const REPO_URL = "https://github.com/Jennifer-source/ngo-website";
 
-const MISSION =
-  "“Serving humanity with grace, dignity, and hope — Hands of Grace International Ministries Trust supports families, children, elders, and villages through practical care, prayer, relief, and community service.”";
+const HERO_LINES = ["Where faith", "becomes action."];
+const HERO_SUB =
+  "Serving communities. Restoring dignity. Carrying hope forward.";
 
-const trustBadges = [
-  "Transparent giving",
-  "Community-first service",
-  "Volunteer-led outreach",
-];
+const chapters = [
+  ["01", "Hero", "Full-bleed duotone ministry artwork, masked H1 lines, parallax on scroll-away and a two-CTA path into the story."],
+  ["02", "Our Journey", "Counter-drifting statements, then a scroll-driven horizontal filmstrip of five milestones — with a vertical editorial stack for mobile and reduced motion."],
+  ["03", "Impact", "A generated dot-grid world map with pulsing region markers and the trust's four recorded figures."],
+  ["04", "Journey Film", "A cinematic documentary stage with scroll-linked scaling and an honest play state."],
+  ["05", "Social Handles", "Kinetic marquee words and channel cards that link the trust's real YouTube, Facebook and Instagram."],
+  ["06", "The Founders", "Chaptered founder portraits with parallax, ghost numerals and story / vision / contribution fields."],
+  ["07", "Serve", "A radial orbit of seven pathways — volunteer, pray, give, partner, serve, share, connect — each aimed at its own CTA."],
+  ["08", "Impact Stories", "Human accounts told in five beats — person, moment, need, response, change — placeholder text by design."],
+  ["09", "Fragments", "A mixed-span documentary photo archive with duotone treatment and hover detail plates."],
+  ["10", "Talk to Us", "Pathway-chip contact form writing straight into the Convex conversations table."],
+  ["11", "Donate", "One-time or monthly giving: Stripe Checkout in INR when keys exist, otherwise a recorded donation intent with a reference code."],
+  ["12", "The Story Isn't Over", "Word-by-word blur-reveal climax over a scroll-linked glow, aimed at three participation CTAs."],
+  ["13", "Footer", "Serif wordmark, linked channels, contact block and the closing line: “The journey continues.”"],
+] as const;
 
-const journey = [
+const impactFields = [
+  ["25+", "Communities reached"],
+  ["10,000+", "People served"],
+  ["100+", "Outreaches"],
+  ["20+", "Years of service"],
+] as const;
+
+const founders = [
   {
-    index: "01",
-    title: "The Vision",
-    body: "A small circle began praying for a trust that would meet spiritual and practical needs together.",
+    img: graceFounder1,
+    name: "PS. Joshua Nayanapogula",
+    role: "Founder",
   },
   {
-    index: "02",
-    title: "Early Service",
-    body: "Family visits, children's support, and prayer gatherings became the first visible signs of that calling.",
+    img: graceFounder2,
+    name: "PS. Joffy Nayanapogula",
+    role: "Founder",
   },
   {
-    index: "03",
-    title: "Village Outreach",
-    body: "Food distribution, blanket support, and community visits grew through volunteer service.",
-  },
-  {
-    index: "04",
-    title: "Future Mission",
-    body: "The trust continues building transparent, scalable programs for long-term community care.",
+    img: graceCofounder,
+    name: "Mr. Shalom Joshua Nayanapogula",
+    role: "Co-Founder",
   },
 ] as const;
 
-const missionVision = [
-  {
-    label: "Mission",
-    body: "Provide compassionate relief, prayer, education support, food assistance, and family care.",
-  },
-  {
-    label: "Vision",
-    body: "See communities strengthened through sustainable service and trustworthy partnerships.",
-  },
-  {
-    label: "Core values",
-    body: "Faith, compassion, transparency, service, dignity, hope, and unity.",
-  },
-] as const;
-
-const impactCounters = [
-  ["5,000+", "Families helped"],
-  ["200+", "Events conducted"],
-  ["1,000+", "Children supported"],
-  ["25+", "Villages reached"],
-  ["100+", "Volunteers"],
-] as const;
-
-const programs = [
-  "Food distribution",
-  "Blanket support",
-  "Village outreach",
-  "Elderly care",
-  "Children's support",
-  "Prayer gatherings",
-  "Volunteer-led community service",
-] as const;
-
-const workSections = [
-  {
-    name: "Homepage / Hero",
-    body: "Full-screen hero with the outreach image, dark overlay, and a floating panel that puts one impact highlight — “5,000+ families reached” — directly into the first view.",
-  },
-  {
-    name: "About & journey",
-    body: "Trust storytelling with badge chips, an image frame, and a numbered journey timeline from vision to future mission.",
-  },
-  {
-    name: "Mission band & impact",
-    body: "Mission / vision / core values grid, then five animated counters that count up on scroll using IntersectionObserver.",
-  },
-  {
-    name: "Events",
-    body: "A featured event with an “Upcoming” pill, program details and a live countdown, plus a list of past events.",
-  },
-  {
-    name: "Resources",
-    body: "Filterable resource cards — annual report, trust profile, donation guide, volunteer guide — with All / Reports / Guides / Trust Profile filters.",
-  },
-  {
-    name: "Gallery, lightbox & team",
-    body: "Masonry gallery buttons that open an accessible modal lightbox, and three founder profile cards.",
-  },
-  {
-    name: "Donation details",
-    body: "A donation card with actions and a full bank/UPI details list (placeholders, to be verified before launch).",
-  },
-  {
-    name: "Forms & contact",
-    body: "Volunteer, prayer, contact and newsletter forms with modal success states, plus contact details and socials.",
-  },
-] as const;
-
-const resourceItems = [
-  {
-    type: "report",
-    meta: "Impact & accountability",
-    title: "Annual Report",
-    body: "A clear yearly summary of programs, community reach, donor use, and future priorities.",
-  },
-  {
-    type: "profile",
-    meta: "Organization overview",
-    title: "Trust Profile",
-    body: "A concise profile for donors, partners, churches, and organizations that want to understand the trust.",
-  },
-  {
-    type: "guide",
-    meta: "Giving with confidence",
-    title: "Donation Guide",
-    body: "Helpful giving instructions, donation channels, receipt steps, and international donor notes.",
-  },
-  {
-    type: "guide",
-    meta: "Serve with us",
-    title: "Volunteer Guide",
-    body: "A practical guide for volunteers who want to support events, village outreach, logistics, and care visits.",
-  },
-] as const;
-
-const faq = [
-  [
-    "How can I donate?",
-    "Use the bank or UPI details on the site, or contact the trust for the latest giving options.",
-  ],
-  [
-    "Can I volunteer for one event?",
-    "Yes. Submit the volunteer form and the coordination team can match your availability.",
-  ],
-  [
-    "Can organizations partner with Hands of Grace?",
-    "Yes. Partners can support programs through donations, supplies, volunteering, events, and long-term outreach collaboration.",
-  ],
-] as const;
-
-const forms = [
-  ["Volunteer registration", "Name, email, skills, availability"],
-  ["Prayer request", "Name, email, anonymous option, request"],
-  ["Contact message", "Name, email, message"],
-  ["Newsletter signup", "Email, footer form"],
+const pathways = [
+  "Volunteer",
+  "Pray",
+  "Give",
+  "Partner",
+  "Serve",
+  "Share",
+  "Connect",
 ] as const;
 
 const designLanguage = [
-  ["Type", "Inter for body, Poppins for headings"],
-  ["Color", "Navy, blue, teal, green, and gold on mist/paper surfaces"],
-  ["Effects", "Turbulence noise-displaced gradient hero art (SVG filters)"],
-  ["Backdrop", "Fixed world-map SVG wash behind the whole site"],
-  [
-    "Components",
-    "Badges, timeline, counters, countdown, filter chips, lightbox modal, cards, forms",
-  ],
-  [
-    "Accessibility",
-    "Skip link, semantic landmarks, aria labels, keyboard-dismissible modal, lazy images",
-  ],
+  ["Palette", "Seven sunrise oranges against warm neutrals — mist, ivory, cream, sand, smoke, charcoal, ink."],
+  ["Type", "Playfair Display for emotional headlines, Inter for metadata, body and UI."],
+  ["Motion", "One easing curve — cubic-bezier(0.22, 1, 0.36, 1) — shared by all 47 animation sites."],
+  ["Imagery", "A duotone treatment unifies every photograph: two gradient layers over grayscale."],
+  ["Atmosphere", "Film-grain overlay, scroll progress thread, and a desktop chapter cursor."],
+  ["Accessibility", "Reduced-motion fallbacks throughout, semantic landmarks, radiogroup states, honest empty states."],
 ] as const;
 
 const buildFeatures = [
-  "Cinematic homepage",
-  "Trust storytelling",
-  "Impact counters",
-  "Events & countdown",
-  "Trust resources",
-  "Gallery lightbox",
-  "Founder profile cards",
-  "Volunteer & prayer forms",
-  "FAQ",
-  "Contact & newsletter",
-  "Dark mode",
-  "PWA service worker",
+  "13-chapter cinematic homepage",
+  "Convex-backed contact form",
+  "Stripe checkout · intent fallback",
+  "Scroll-linked journey filmstrip",
+  "Generated dot-grid impact map",
+  "Radial serve pathway orbit",
+  "Documentary film stage",
+  "Kinetic social marquees",
+  "Fragment photo archive",
+  "Founder storytelling chapters",
+  "Word-by-word climax reveal",
+  "Reduced-motion throughout",
 ] as const;
 
 const reflections = [
-  "A trust website is an accountability surface before it is a marketing surface. Every section was placed to make the work verifiable, not just visible.",
-  "The site ships as a working PWA with a service worker and dark mode — a prototype that behaves like a product from the first commit.",
-  "Repeatable content is centralized in script.js (resourceItems), so the trust's team can update documents without touching markup.",
-  "The README's own rule is respected throughout: donation, contact, founder and image details are placeholders that must be replaced with verified trust information before launch.",
+  "The hardest problem was sequencing trust. Thirteen chapters were ordered so a stranger meets the story before the ask — understanding first, participation second.",
+  "Motion was treated as tone, not decoration. One shared easing curve keeps the whole site calm; reduced-motion users receive a complete vertical edition instead of a stripped one.",
+  "Honesty became a design material. Empty impact values, editable milestones and a “being prepared” film state are structured visibly — the site never invents the ministry's facts.",
+  "A single content file as source of truth (641 lines of site.ts) meant every section, label and CTA stayed consistent — and the ministry can edit its own story in one place.",
 ] as const;
 
 /** Level 1 — the whole project story, recomposed from the sections below. */
 const overviewSteps = [
   {
     label: "Project",
-    headline: "A trust website for Hands of Grace International Ministries Trust.",
-    body: "A responsive static prototype: cinematic homepage, storytelling, impact counters, events, resources, forms, dark mode, PWA.",
+    headline: "A story-driven digital experience for a nonprofit trust.",
+    body: "Hands of Grace International Ministries Trust — thirteen chapters from hero to footer, built as one continuous React experience.",
   },
   {
     label: "Problem",
-    headline: "A charity's work must be verifiable, not just visible.",
-    body: "Donors, volunteers and partners need one trustworthy place that shows the programs, documents and giving paths.",
+    headline: "Translating an organization's story into trust and participation.",
+    body: "The mission needed to feel human and emotionally engaging while keeping every action — talk, serve, give — easy to discover.",
   },
   {
     label: "Role",
-    headline: "Designer & developer of the full prototype.",
-    body: "Individual project — structure, interface, interactions and the PWA build.",
+    headline: "UI/UX design + frontend development.",
+    body: "Individual project — experience structure, visual direction, interface, interaction, responsive implementation and build.",
   },
   {
     label: "Approach",
-    headline: "Accountability surface before marketing surface.",
-    body: "Every section placed to make the work checkable — programs, events, resources, FAQ, and giving details in one flow.",
+    headline: "Story → trust → understanding → participation.",
+    body: "Chapter sequencing leads a visitor from the journey, through founders and impact, to serve pathways and donation.",
   },
   {
     label: "Solution",
-    headline: "A working site — installable, themed, filterable.",
-    body: "Resource cards rendered from one data array with filters, plus lightbox gallery, countdown, dark mode and a service worker.",
+    headline: "A cinematic single-page experience with a working backend.",
+    body: "Framer Motion storytelling over Convex: contact submissions persist, donations run through Stripe or a recorded intent.",
   },
   {
     label: "Outcome",
-    headline: "A functional prototype with honest placeholders.",
-    body: "Every interaction works locally; trust details are placeholders pending verified information before launch.",
+    headline: "A complete experience with honest placeholders.",
+    body: "The ministry's own artwork and figures ship verified; dates, stories and bank details stay clearly editable until confirmed.",
   },
 ] as const;
 
@@ -264,48 +167,54 @@ const navItems = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
-/* Interactive recreation of the site's filterable resources section:  */
-/* the same four cards, rendered from the same shape of data, with the */
-/* same All / Reports / Guides / Trust Profile filters.                */
+/* Interactive recreation of the site's Serve chapter: the same seven  */
+/* pathways from site.ts, aimed at the same CTA targets.               */
 /* ------------------------------------------------------------------ */
 
-function ResourceFilterDemo() {
-  const [filter, setFilter] = useState("all");
-  const filters = ["all", "report", "guide", "profile"] as const;
-  const items =
-    filter === "all"
-      ? resourceItems
-      : resourceItems.filter((item) => item.type === filter);
+function ServePathwaysDemo() {
+  const [selected, setSelected] = useState("Volunteer");
+  const details: Record<string, string> = {
+    Volunteer: "Give your time. Use your skills. Stand with communities.",
+    Pray: "Carry the work. Lift the people. Believe with us.",
+    Give: "Sow generously. Sustain the journey. Change a next step.",
+    Partner: "Bring your organization. Share resources. Multiply reach.",
+    Serve: "Go where needed. Do the quiet work. Lead by serving.",
+    Share: "Tell the story. Amplify hope. Bring others along.",
+    Connect: "Ask questions. Meet the team. Begin a conversation.",
+  };
 
   return (
     <div>
-      <p className="label-mono text-muted-foreground">Interactive recreation · Resources section</p>
+      <p className="label-mono text-muted-foreground">
+        Interactive recreation · Serve chapter
+      </p>
       <div className="mt-4 flex flex-wrap gap-2">
-        {filters.map((f) => (
+        {pathways.map((p) => (
           <button
-            key={f}
+            key={p}
             type="button"
-            onClick={() => setFilter(f)}
-            aria-pressed={filter === f}
+            onClick={() => setSelected(p)}
+            aria-pressed={selected === p}
             className={`label-mono border px-3 py-1.5 transition-colors ${
-              filter === f
+              selected === p
                 ? "border-accent text-accent"
                 : "border-hairline text-muted-foreground hover:text-foreground"
             }`}
           >
-            {f === "all" ? "All" : f === "report" ? "Reports" : f === "guide" ? "Guides" : "Trust profile"}
+            {p}
           </button>
         ))}
       </div>
-      <div className="mt-5 grid gap-px border border-hairline bg-hairline sm:grid-cols-2">
-        {items.map((item) => (
-          <div key={item.title} className="bg-paper p-5">
-            <p className="label-mono text-accent">{item.meta}</p>
-            <h3 className="display-lg mt-2 text-lg">{item.title}</h3>
-            <p className="mt-2 text-sm font-mono text-muted-foreground">{item.body}</p>
-            <p className="label-mono mt-4 text-muted-foreground">Read ↗</p>
-          </div>
-        ))}
+      <div className="mt-5 border border-hairline bg-paper p-6">
+        <p className="label-mono text-accent">{selected}</p>
+        <p className="display-lg mt-3 text-2xl leading-tight">{details[selected]}</p>
+        <p className="label-mono mt-6 text-muted-foreground">
+          {selected === "Give"
+            ? "Leads to the Donate chapter ↗"
+            : selected === "Share"
+              ? "Leads to the Social chapter ↗"
+              : "Leads to Talk to Us ↗"}
+        </p>
       </div>
     </div>
   );
@@ -342,7 +251,7 @@ export function HandsOfGraceCaseStudy({
         </Shell>
       </header>
       <main>
-        {/* HERO */}
+        {/* HERO — the first viewport: what, why, what I did */}
         <section className="grain bg-paper pb-16 pt-28">
           <Shell>
             <p className="label-mono text-accent">
@@ -356,21 +265,26 @@ export function HandsOfGraceCaseStudy({
                 {project.positioning}
               </p>
               <p className="text-lg font-mono leading-relaxed text-muted-foreground lg:col-span-4 lg:col-start-9">
-                A responsive static website prototype for Hands of Grace International Ministries
-                Trust: cinematic homepage, trust storytelling, impact counters, events, resources,
-                gallery lightbox, founder profiles, forms, dark mode and a PWA service worker.
+                How can a nonprofit's story, mission and impact become a digital
+                experience that feels trustworthy, human and emotionally engaging —
+                while keeping every action easy to discover? A story-driven website
+                for Hands of Grace International Ministries Trust: thirteen chapters,
+                designed and built end to end.
               </p>
             </div>
             <Reveal className="mt-14">
               <div className="overflow-hidden bg-muted">
                 <img
-                  src={graceImg}
-                  alt="Hands of Grace — community outreach hero art from the trust website"
+                  src={graceHero}
+                  alt="Hands of Grace — ministry hero artwork: “By His power, with His love, for His glory” — Romans 11:36"
                   width={1920}
                   height={1080}
                   className="aspect-video w-full object-cover"
                 />
               </div>
+              <p className="label-mono mt-3 text-muted-foreground">
+                The ministry's own hero artwork — shipped verified in the site.
+              </p>
             </Reveal>
           </Shell>
         </section>
@@ -382,10 +296,10 @@ export function HandsOfGraceCaseStudy({
             <CaseStudyNav items={navItems} className="mt-6" />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
+                ["Type", "Nonprofit digital experience"],
                 ["Role", project.role],
-                ["Format", "Responsive static website · PWA"],
+                ["Focus", "Storytelling · Trust · Participation"],
                 ["Built with", project.tools.join(" · ")],
-                ["Source", REPO_URL.replace("https://", "")],
               ].map(([k, v]) => (
                 <div key={k} className="border-t border-hairline pt-3">
                   <p className="label-mono text-muted-foreground">{k}</p>
@@ -396,10 +310,13 @@ export function HandsOfGraceCaseStudy({
             <dl className="mt-12 grid gap-6 border-t border-hairline pt-6 sm:grid-cols-3 sm:gap-10">
               {[
                 ["Client", "Hands of Grace International Ministries Trust"],
-                ["Purpose", "A trust website that makes the charity's work visible and verifiable"],
+                [
+                  "What I made",
+                  "A single-page cinematic experience — 13 chapters, from hero to footer",
+                ],
                 [
                   "Status",
-                  "Prototype — placeholders to be replaced with verified details before launch",
+                  "Complete build — ministry artwork and figures verified; dates and stories clearly editable placeholders",
                 ],
               ].map(([term, detail]) => (
                 <div key={term}>
@@ -412,102 +329,107 @@ export function HandsOfGraceCaseStudy({
           </Shell>
         </section>
 
-        {/* 02 MISSION QUOTE (dark) */}
+        {/* 02 THE MISSION (dark) */}
         <section id="cs-mission" data-tone="dark" className="grain-light bg-void py-28 text-void-foreground">
           <Shell>
             <SectionHeader index="02" label="The mission" invert />
             <Reveal>
               <p className="display-lg mt-12 max-w-[26ch] text-[clamp(1.8rem,4.4vw,4rem)] leading-[1.05]">
-                {MISSION}
+                {HERO_LINES[0]} <span className="italic">{HERO_LINES[1]}</span>
               </p>
             </Reveal>
             <p className="mt-10 max-w-2xl border-t border-white/15 pt-6 font-mono leading-relaxed text-white/60">
-              The trust's own hero copy, verbatim from the site.
+              The site's opening words — {HERO_SUB} The whole experience was
+              sequenced so a stranger can move from this first line to real
+              participation: story, then trust, then understanding, then action.
             </p>
             <div className="mt-12 flex flex-wrap gap-3">
-              {trustBadges.map((badge) => (
-                <span
-                  key={badge}
-                  className="border border-white/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/60"
-                >
-                  {badge}
-                </span>
-              ))}
+              {["Understand the mission", "Meet the people", "See the impact", "Join the journey"].map(
+                (badge) => (
+                  <span
+                    key={badge}
+                    className="border border-white/15 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/60"
+                  >
+                    {badge}
+                  </span>
+                ),
+              )}
             </div>
           </Shell>
         </section>
 
-        {/* 03 THE TRUST */}
-        <section className="bg-paper py-24">
+        {/* 03 UNDERSTANDING THE ORGANIZATION */}
+        <section id="cs-journey" className="bg-paper py-24">
           <Shell>
-            <SectionHeader index="03" label="About the trust" title="What the site presents" />
+            <SectionHeader index="03" label="Understanding the organization" title="From prayer to presence to action" />
             <div className="mt-10 grid gap-12 lg:grid-cols-12">
               <Reveal className="lg:col-span-6">
                 <p className="text-xl font-mono leading-relaxed">
-                  The trust serves vulnerable communities through food support, village outreach,
-                  elderly care, education support, prayer, and compassionate relief.
+                  The trust serves communities through practical care — food
+                  distribution, outreach, support for children, families and elders.
+                  The design problem was to make that story legible without
+                  inventing it.
                 </p>
                 <p className="mt-6 font-mono leading-relaxed text-muted-foreground">
-                  The website's job is to present that work with steady care, transparent service,
-                  and a deep respect for every person's dignity — the trust's own words, reused as
-                  the site's design brief.
+                  The site's own content model made that possible: journey
+                  milestones, founder stories and impact figures each carry an
+                  “editable” flag. Verified facts — the ministry's artwork, its
+                  recorded figures — render as fact. Unwritten chapters render as
+                  clearly-labelled structure, never fiction. I structured the
+                  experience around the organization's story so visitors move from
+                  understanding the mission to exploring its impact.
                 </p>
               </Reveal>
-              <ul className="lg:col-span-5 lg:col-start-8">
-                {programs.map((program, i) => (
-                  <Reveal key={program} delay={i * 0.04}>
-                    <li className="flex items-baseline gap-5 border-t border-hairline py-4">
-                      <span className="label-mono text-accent">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="display-lg text-xl">{program}</span>
-                    </li>
-                  </Reveal>
-                ))}
-              </ul>
-            </div>
-            <Reveal className="mt-12">
-              <div className="grid gap-px border border-hairline bg-hairline sm:grid-cols-3">
-                {missionVision.map((item) => (
-                  <div key={item.label} className="bg-paper p-6">
-                    <p className="label-mono text-accent">{item.label}</p>
-                    <p className="mt-3 text-sm font-mono leading-relaxed">{item.body}</p>
-                  </div>
-                ))}
+              <div className="lg:col-span-5 lg:col-start-8">
+                <p className="label-mono text-muted-foreground">The journey chapters</p>
+                <ol className="mt-4">
+                  {[
+                    "A prayer becomes a promise",
+                    "Presence before programs",
+                    "The first act of service",
+                    "Grace multiplies",
+                    "The journey continues",
+                  ].map((moment, i) => (
+                    <Reveal key={moment} delay={i * 0.04}>
+                      <li className="flex items-baseline gap-5 border-t border-hairline py-4">
+                        <span className="label-mono text-accent">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="display-lg text-xl">{moment}</span>
+                      </li>
+                    </Reveal>
+                  ))}
+                </ol>
+                <p className="label-mono mt-4 text-muted-foreground">
+                  Moments from site.ts — dates and locations are editable
+                  placeholders, honestly labelled on the site itself.
+                </p>
               </div>
-            </Reveal>
+            </div>
           </Shell>
         </section>
 
-        {/* 04 JOURNEY */}
-        <section id="cs-journey" className="bg-paper pb-24">
+        {/* 04 EXPERIENCE / INFORMATION ARCHITECTURE */}
+        <section id="cs-impact" className="bg-paper pb-24">
           <Shell>
-            <SectionHeader index="04" label="Our journey" title="A story of grace becoming service" />
-            <ol className="mt-10">
-              {journey.map((step, i) => (
-                <Reveal key={step.index} delay={i * 0.05}>
-                  <li
-                    className="flex items-baseline gap-6 border-t border-hairline py-5"
-                    style={{ paddingLeft: `${i * 4}%` }}
-                  >
-                    <span className="label-mono text-accent">{step.index}</span>
-                    <span
-                      className={`display-lg uppercase text-[clamp(1.2rem,2.8vw,2.4rem)] leading-tight ${
-                        i === journey.length - 1 ? "text-accent" : ""
-                      }`}
-                    >
-                      {step.title}
-                    </span>
-                  </li>
-                </Reveal>
-              ))}
-            </ol>
-            <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-10">
-              {journey.map((step) => (
-                <Reveal key={step.title}>
-                  <div className="border-t border-hairline pt-4">
-                    <p className="label-mono text-muted-foreground">{step.title}</p>
-                    <p className="mt-2 text-sm font-mono leading-relaxed text-muted-foreground">{step.body}</p>
+            <SectionHeader index="04" label="Experience design" title="Information architecture" />
+            <p className="mt-8 max-w-2xl font-mono leading-relaxed text-muted-foreground">
+              The homepage is sequenced as thirteen chapters, rendered in order.
+              Each chapter has one job; together they walk a visitor from story to
+              participation. The order is the argument: see the journey, meet the
+              people, read the impact — then choose how to respond.
+            </p>
+            <div className="mt-10 space-y-px">
+              {chapters.map(([num, name, body], i) => (
+                <Reveal key={num} delay={i * 0.03}>
+                  <div className="grid gap-6 border-t border-hairline py-8 lg:grid-cols-12">
+                    <span className="label-mono text-muted-foreground lg:col-span-1">{num}</span>
+                    <div className="lg:col-span-4">
+                      <h3 className="display-lg text-xl">{name}</h3>
+                    </div>
+                    <p className="font-mono leading-relaxed text-muted-foreground lg:col-span-6 lg:col-start-7">
+                      {body}
+                    </p>
                   </div>
                 </Reveal>
               ))}
@@ -516,16 +438,17 @@ export function HandsOfGraceCaseStudy({
         </section>
 
         {/* 05 IMPACT (dark) */}
-        <section id="cs-impact" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
+        <section id="cs-build" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
           <Shell>
-            <SectionHeader index="05" label="Trust impact" title="Compassion you can count" invert />
+            <SectionHeader index="05" label="Impact" title="Figures the trust has recorded" invert />
             <p className="mt-8 max-w-2xl font-mono leading-relaxed text-white/60">
-              The site's own impact counters, animated on scroll with IntersectionObserver in the
-              original build. Presented here exactly as the site states them.
+              Presented on a generated dot-grid world map with pulsing region
+              markers. These four figures are the trust's own recorded values —
+              used exactly as the site states them.
             </p>
             <Reveal className="mt-12">
-              <div className="grid gap-px border border-white/15 bg-white/15 sm:grid-cols-3 lg:grid-cols-5">
-                {impactCounters.map(([value, label]) => (
+              <div className="grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+                {impactFields.map(([value, label]) => (
                   <div key={label} className="bg-void p-6">
                     <p className="display-lg text-3xl">{value}</p>
                     <p className="label-mono mt-2 text-white/60">{label}</p>
@@ -536,134 +459,120 @@ export function HandsOfGraceCaseStudy({
           </Shell>
         </section>
 
-        {/* 06 SITE SECTIONS */}
-        <section id="cs-build" className="bg-paper pb-24">
+        {/* 06 KEY EXPERIENCE SECTIONS — visuals */}
+        <section className="bg-paper py-24">
           <Shell>
-            <SectionHeader index="06" label="The build" title="Site sections" />
-            <div className="mt-10 space-y-px">
-              {workSections.map((section, i) => (
-                <Reveal key={section.name} delay={i * 0.04}>
-                  <div className="grid gap-6 border-t border-hairline py-8 lg:grid-cols-12">
-                    <span className="label-mono text-muted-foreground lg:col-span-1">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="lg:col-span-5">
-                      <h3 className="display-lg text-xl">{section.name}</h3>
+            <SectionHeader index="06" label="Key experience sections" title="The people, the work, the field" />
+            <div className="mt-10 grid gap-6 lg:grid-cols-12">
+              <Reveal className="lg:col-span-6">
+                <p className="label-mono text-muted-foreground">The founders</p>
+                <h3 className="display-lg mt-3 text-2xl leading-tight">
+                  Chaptered portraits with parallax and story fields
+                </h3>
+                <p className="mt-3 text-sm font-mono leading-relaxed text-muted-foreground">
+                  The founders chapter alternates portrait and text, with ghost
+                  numerals and story / vision / contribution fields for each person.
+                </p>
+              </Reveal>
+              <Reveal className="lg:col-span-6" delay={0.05}>
+                <div className="grid gap-px border border-hairline bg-hairline sm:grid-cols-3">
+                  {founders.map((f) => (
+                    <div key={f.name} className="bg-paper">
+                      <div className="overflow-hidden bg-muted">
+                        <img
+                          src={f.img}
+                          alt={`Portrait of ${f.name}, ${f.role}`}
+                          width={360}
+                          height={480}
+                          className="aspect-[3/4] w-full object-cover"
+                        />
+                      </div>
+                      <p className="label-mono mt-2 px-1 text-muted-foreground">{f.role}</p>
+                      <p className="display-lg mt-1 px-1 text-base">{f.name}</p>
                     </div>
-                    <p className="font-mono leading-relaxed text-muted-foreground lg:col-span-5 lg:col-start-8">
-                      {section.body}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
+                  ))}
+                </div>
+              </Reveal>
             </div>
+            <Reveal className="mt-16">
+              <div className="grid gap-6 border-t border-hairline pt-8 lg:grid-cols-12">
+                <div className="lg:col-span-5">
+                  <p className="label-mono text-muted-foreground">Fragments</p>
+                  <h3 className="display-lg mt-3 text-2xl leading-tight">
+                    A documentary photo archive
+                  </h3>
+                  <p className="mt-3 text-sm font-mono leading-relaxed text-muted-foreground">
+                    Twelve field photographs in mixed spans, unified by a duotone
+                    treatment, with caption plates and an honest “small moments,
+                    kept carefully” brief.
+                  </p>
+                </div>
+                <div className="lg:col-span-7">
+                  <div className="overflow-hidden bg-muted">
+                    <img
+                      src={graceFrag}
+                      alt="Field photograph from the Fragments archive — an evening gathering"
+                      width={1200}
+                      height={800}
+                      className="aspect-[3/2] w-full object-cover"
+                    />
+                  </div>
+                  <p className="label-mono mt-3 text-muted-foreground">
+                    Fragment / 009 — from the site's own archive.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </Shell>
         </section>
 
         {/* 07 SIGNATURE INTERACTION */}
         <section id="cs-signature" className="bg-paper pb-24">
           <Shell>
-            <SectionHeader index="07" label="Interaction / prototype" title="Resources, filterable" />
+            <SectionHeader index="07" label="Interaction / prototype" title="Serve — seven ways in" />
             <div className="mt-12 grid gap-14 lg:grid-cols-12">
               <div className="lg:col-span-5">
                 <h2 className="display-xl text-[clamp(2.4rem,6vw,5.5rem)] uppercase leading-[0.9]">
-                  Filter & read.
+                  Choose how to help.
                 </h2>
                 <p className="mt-8 max-w-md font-mono leading-relaxed text-muted-foreground">
-                  The resources section is rendered from a single data array in script.js —
-                  resourceItems — with filter chips for All / Reports / Guides / Trust Profile. The
-                  trust's team can update the documents by editing one array, not the markup. Try
-                  the recreation below.
+                  The serve chapter presents seven pathways on a radial orbit on
+                  desktop — each pathway carries three short lines and its own call
+                  to action. Give leads to Donate, Share leads to the social
+                  channels, everything else leads to Talk to Us. A responsive grid
+                  picker replaces the orbit below desktop. Try the recreation.
                 </p>
                 <p className="label-mono mt-8 text-muted-foreground">
-                  Static recreation — the live site renders the same cards from script.js.
+                  Static recreation — the live site renders an animated orbit from
+                  the same seven pathways.
                 </p>
               </div>
               <div className="lg:col-span-6 lg:col-start-7">
                 <Reveal>
-                  <ResourceFilterDemo />
+                  <ServePathwaysDemo />
                 </Reveal>
               </div>
             </div>
           </Shell>
         </section>
 
-        {/* 08 EVENT & FORMS */}
+        {/* 08 BUILDING THE EXPERIENCE */}
         <section className="bg-paper pb-24">
           <Shell>
-            <SectionHeader index="08" label="Events & engagement" title="Gather, serve, respond" />
-            <div className="mt-10 grid gap-12 lg:grid-cols-12">
-              <div className="lg:col-span-6">
-                <p className="label-mono text-accent">Featured event</p>
-                <h3 className="display-lg mt-3 text-2xl leading-tight">
-                  Community Health & Prayer Camp
-                </h3>
-                <p className="mt-3 text-sm font-mono leading-relaxed text-muted-foreground">
-                  August 16, 2026 · 9:00 AM · Ministry Community Hall. Free wellness checks, prayer
-                  support, family counseling, food assistance, and community lunch — with a live
-                  countdown rendered by the site itself.
-                </p>
-                <dl className="mt-6 divide-y divide-hairline border-t border-hairline">
-                  {forms.map(([form, fields]) => (
-                    <div key={form} className="flex items-baseline justify-between gap-4 py-3.5">
-                      <dt className="label-mono text-muted-foreground">{form}</dt>
-                      <dd className="text-right text-sm font-mono">{fields}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-              <div className="lg:col-span-5 lg:col-start-8">
-                <p className="label-mono text-muted-foreground">Frequently asked</p>
-                <div className="mt-4 border border-hairline">
-                  {faq.map(([q, a], i) => (
-                    <Reveal key={q} delay={i * 0.05}>
-                      <details className="group border-b border-hairline last:border-b-0">
-                        <summary className="flex cursor-pointer items-center justify-between gap-4 py-4 pl-4 pr-3 text-sm">
-                          {q}
-                          <span className="label-mono text-accent transition-transform group-open:rotate-45">
-                            +
-                          </span>
-                        </summary>
-                        <p className="pb-4 pl-4 pr-4 text-sm font-mono leading-relaxed text-muted-foreground">
-                          {a}
-                        </p>
-                      </details>
-                    </Reveal>
-                  ))}
-                </div>
-                <p className="label-mono mt-4 text-muted-foreground">
-                  Forms show modal success states; a production build would deliver submissions
-                  securely to the trust team.
-                </p>
-              </div>
-            </div>
-          </Shell>
-        </section>
-
-        {/* 09 DESIGN LANGUAGE (dark) */}
-        <section id="cs-language" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
-          <Shell>
-            <SectionHeader index="09" label="Design language" title="The site's own system" invert />
-            <div className="mt-10 grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-3">
-              {designLanguage.map(([label, value]) => (
-                <div key={label} className="bg-void p-6">
-                  <p className="label-mono text-accent">{label}</p>
-                  <p className="mt-3 text-sm font-mono leading-relaxed text-white/70">{value}</p>
+            <SectionHeader index="08" label="Building the experience" title="Under the hood" />
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["Stack", "React 19 + TypeScript + Vite + Tailwind v4"],
+                ["Backend", "Convex — contact conversations and donation records"],
+                ["Motion", "Framer Motion, one shared easing curve, reduced-motion aware"],
+                ["Giving", "Stripe Checkout in INR when configured, otherwise recorded intent"],
+              ].map(([k, v]) => (
+                <div key={k} className="border-t border-hairline pt-3">
+                  <p className="label-mono text-muted-foreground">{k}</p>
+                  <p className="mt-1.5 text-sm font-mono leading-relaxed">{v}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-8 max-w-2xl font-mono leading-relaxed text-white/60">
-              The site's visual language is its own — navy, teal and gold on mist surfaces, with a
-              fixed world-map backdrop. This case study re-presents it with the portfolio's paper
-              and ink; the trust site itself keeps its own palette.
-            </p>
-          </Shell>
-        </section>
-
-        {/* 10 BUILD FEATURES */}
-        <section className="bg-paper py-24">
-          <Shell>
-            <SectionHeader index="10" label="Build" title="What the prototype includes" />
             <div className="mt-10 grid gap-px border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-4">
               {buildFeatures.map((feature) => (
                 <div key={feature} className="bg-paper p-5">
@@ -673,38 +582,61 @@ export function HandsOfGraceCaseStudy({
             </div>
             <p className="label-mono mt-8 inline-flex items-start gap-3 border border-hairline bg-muted px-4 py-3.5 text-muted-foreground">
               <span className="mt-[6px] size-1.5 shrink-0 bg-accent" aria-hidden="true" />
-              Placeholder trust details are labelled as such on the site itself.
+              Bank details, contact details and story texts are honest placeholders
+              in the site itself — labelled, not faked.
             </p>
           </Shell>
         </section>
 
-        {/* 11 OUTCOME / STATUS */}
-        <section className="bg-paper pb-24">
+        {/* 09 DESIGN LANGUAGE (dark) */}
+        <section id="cs-language" data-tone="dark" className="grain-light bg-void py-24 text-void-foreground">
           <Shell>
-            <SectionHeader index="11" label="Outcome" title="Honest reporting" />
+            <SectionHeader index="09" label="Design direction" title="The site's own system" invert />
+            <div className="mt-10 grid gap-px border border-white/15 bg-white/15 sm:grid-cols-2 lg:grid-cols-3">
+              {designLanguage.map(([label, value]) => (
+                <div key={label} className="bg-void p-6">
+                  <p className="label-mono text-accent">{label}</p>
+                  <p className="mt-3 text-sm font-mono leading-relaxed text-white/70">{value}</p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-8 max-w-2xl font-mono leading-relaxed text-white/60">
+              Sunrise warmth over near-black ink — a palette that reads as hope
+              without becoming sentimental. This case study re-presents that
+              language with the portfolio's paper and ink; the trust site keeps its
+              own sunrise palette.
+            </p>
+          </Shell>
+        </section>
+
+        {/* 10 RESPONSIVE + OUTCOME / STATUS */}
+        <section className="bg-paper py-24">
+          <Shell>
+            <SectionHeader index="10" label="Responsive experience" title="One story, every screen" />
             <div className="mt-10 grid gap-6 sm:grid-cols-3">
               {[
-                "Responsive static prototype",
-                "Working PWA with service worker",
-                "Placeholders pending verified details",
+                "Horizontal filmstrip becomes a vertical edition on small screens and reduced motion",
+                "Orbit becomes a grid picker; form grids collapse to a single column",
+                "Everything clamps — display type scales from 8.5rem to 3rem",
               ].map((line) => (
                 <div key={line} className="border-t border-hairline pt-4">
-                  <p className="display-lg text-xl leading-snug">{line}</p>
+                  <p className="text-sm font-mono leading-relaxed text-muted-foreground">{line}</p>
                 </div>
               ))}
             </div>
             <p className="mt-10 max-w-2xl font-mono leading-relaxed text-muted-foreground">
-              The site is fully functional as a prototype — every interaction works locally, and the
-              forms' success states are demos. No real donations, volunteer sign-ups or submissions
-              have been processed through it.
+              Outcome: a complete, working experience — contact submissions persist
+              to Convex, donations run through Stripe or record an intent with a
+              reference code, and every interaction works on desktop and mobile. No
+              real donations or enquiries have been processed during development.
             </p>
           </Shell>
         </section>
 
-        {/* 12 REFLECTION */}
+        {/* 11 REFLECTION */}
         <section id="cs-reflection" className="bg-paper pb-24">
           <Shell>
-            <SectionHeader index="12" label="Reflection" title="Design learnings" />
+            <SectionHeader index="11" label="Reflection" title="What I learned" />
             <ol className="mt-10">
               {reflections.map((r, i) => (
                 <Reveal key={r}>
@@ -717,24 +649,6 @@ export function HandsOfGraceCaseStudy({
                 </Reveal>
               ))}
             </ol>
-            <div className="mt-12 grid gap-10 lg:grid-cols-12">
-              <div className="lg:col-span-6">
-                <p className="label-mono text-muted-foreground">Limitations</p>
-                <p className="mt-3 text-sm font-mono leading-relaxed text-muted-foreground">
-                  A static prototype with no backend: form submissions are demonstrated in modals
-                  rather than delivered, and donation, contact, founder and image details are
-                  placeholders that the README requires to be replaced with verified trust
-                  information before launch.
-                </p>
-              </div>
-              <div className="lg:col-span-5 lg:col-start-8">
-                <p className="label-mono text-muted-foreground">Next steps</p>
-                <p className="mt-3 text-sm font-mono leading-relaxed text-muted-foreground">
-                  Replace placeholders with verified trust details, wire the forms to a secure
-                  delivery channel, and deploy with the service worker verified over HTTPS.
-                </p>
-              </div>
-            </div>
           </Shell>
         </section>
 
@@ -743,13 +657,13 @@ export function HandsOfGraceCaseStudy({
           <Shell>
             <Reveal>
               <p className="display-lg max-w-[24ch] text-[clamp(1.8rem,4.4vw,4rem)] leading-[1.05]">
-                Serving humanity with grace, dignity, and hope.
+                The story isn't over.
               </p>
             </Reveal>
             <p className="mt-8 max-w-xl font-mono leading-relaxed text-white/60">
-              Hands of Grace is a trust website that treats compassion as something to be shown and
-              verified — every program, event, document and giving path in one responsive,
-              installable prototype.
+              Hands of Grace turns an organization's story and impact into a clear,
+              human digital experience — story first, trust throughout,
+              participation one tap away.
             </p>
             <div className="mt-14 flex flex-wrap gap-8">
               <Link to={{ pathname: "/", hash: "work" }} className="label-mono link-underline">

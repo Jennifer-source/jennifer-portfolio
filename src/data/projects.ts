@@ -3,12 +3,12 @@
  * Three projects, in order:
  *   01 Quiet Interface — github.com/Jennifer-source/quiet-interface-main
  *   02 Belong          — original Design Alchemy case study (BelongCaseStudy)
- *   03 Hands of Grace  — github.com/Jennifer-source/hands-of-Grace
+ *   03 Hands of Grace  — github.com/Jennifer-source/ngo-website
  * Images are the original project assets, vendored into src/assets.
  */
 import belongImg from "@/assets/work-belong.jpg";
 import quietImg from "@/assets/quiet-interface.svg";
-import graceImg from "@/assets/hands-of-grace-hero.svg";
+import graceImg from "@/assets/grace-hero-design.png";
 
 export type Insight = { n: string; title: string; body: string };
 export type ProcessStep = { title: string; caption: string; learned: string };
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     nextSteps: "",
   },
   {
-    // Hands of Grace — github.com/Jennifer-source/hands-of-Grace.
+    // Hands of Grace — github.com/Jennifer-source/ngo-website.
     // Rendered by the dedicated HandsOfGraceCaseStudy component (Belong/Quiet
     // pattern), so the generic case-study fields stay empty.
     id: "grace",
@@ -120,15 +120,15 @@ export const projects: Project[] = [
     title: "Hands of Grace",
     slug: "hands-of-grace",
     year: "2026",
-    category: "Web Design / Front-end Development / Non-profit",
+    category: "UI/UX / Web Experience / Creative Technology",
     description:
-      "A responsive static website prototype for Hands of Grace International Ministries Trust, a charitable trust serving vulnerable communities.",
+      "A story-driven digital experience for Hands of Grace International Ministries Trust — mission, journey and impact translated into one cinematic, trust-first web experience.",
     positioning:
-      "Serving humanity with grace, dignity, and hope — a trust website built around practical compassion.",
-    role: "Designer & developer",
-    timeline: "Responsive static prototype · PWA",
+      "Where faith becomes action — a nonprofit's story, mission and impact translated into one human digital experience.",
+    role: "UI/UX Design + Frontend Development",
+    timeline: "Single-page experience · 13 chapters",
     team: "Individual project",
-    tools: ["HTML", "CSS", "JavaScript", "PWA"],
+    tools: ["React", "TypeScript", "Tailwind CSS", "Convex", "Framer Motion"],
     heroImage: graceImg,
     thumbnail: graceImg,
     tone: "light",
