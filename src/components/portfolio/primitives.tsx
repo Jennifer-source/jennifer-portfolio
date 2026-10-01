@@ -134,7 +134,7 @@ export function CaseStudyOverview({
             <p className="display-lg mt-3 text-lg leading-snug">{step.headline}</p>
             {step.body ? (
               <p
-                className={`mt-2 text-sm leading-relaxed ${
+                className={`mt-2 text-sm body-editorial ${
                   invert ? "text-white/60" : "text-muted-foreground"
                 }`}
               >

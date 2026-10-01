@@ -35,11 +35,11 @@ export function Manifesto() {
         </div>
         <div className="mt-20 grid gap-x-10 gap-y-14 lg:grid-cols-12">
           <Reveal className="lg:col-span-5 lg:col-start-1">
-            <p className="text-lg leading-relaxed sm:text-xl">
+            <p className="text-lg body-editorial sm:text-xl">
               I design the reasoning first and the interface second. Research is not a phase I
               perform before the real work — it is what makes the real work defensible.
             </p>
-            <p className="mt-6 max-w-prose leading-relaxed text-muted-foreground">
+            <p className="mt-6 max-w-prose body-editorial text-muted-foreground">
               I care about the moment a person understands something they didn't understand a second
               ago. Typography, hierarchy, motion and restraint are the instruments I use to engineer
               that moment — and I'd rather remove a feature than decorate a confusion.

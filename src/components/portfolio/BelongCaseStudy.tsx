@@ -177,7 +177,7 @@ function ExplainThis() {
               </span>
               <span className={open === i ? "font-semibold" : ""}>{q}</span>
             </button>
-            {open === i && <p className="pb-3 pl-6 text-xs leading-relaxed text-muted-foreground">{a}</p>}
+            {open === i && <p className="pb-3 pl-6 text-xs body-editorial text-muted-foreground">{a}</p>}
           </li>
         ))}
       </ol>
@@ -278,7 +278,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
               <p className="display-lg text-[clamp(1.5rem,3vw,2.6rem)] leading-tight lg:col-span-7">
                 Designing for the uncertainty of belonging.
               </p>
-              <p className="text-lg leading-relaxed text-muted-foreground lg:col-span-4 lg:col-start-9">
+              <p className="text-lg body-editorial text-muted-foreground lg:col-span-4 lg:col-start-9">
                 A research-driven interaction design concept for international students navigating
                 their first weeks in a new country.
               </p>
@@ -311,7 +311,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
               ].map(([k, v]) => (
                 <div key={k} className="border-t border-hairline pt-3">
                   <p className="label-mono text-muted-foreground">{k}</p>
-                  <p className="mt-1.5 text-sm leading-relaxed">{v}</p>
+                  <p className="mt-1.5 text-sm body-editorial">{v}</p>
                 </div>
               ))}
             </div>
@@ -325,11 +325,11 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
             <SectionHeader index="02" label="The context" title="Problem space" />
             <div className="mt-10 grid gap-12 lg:grid-cols-12">
               <Reveal className="lg:col-span-6">
-                <p className="text-xl leading-relaxed">
+                <p className="text-xl body-editorial">
                   International students often encounter unfamiliar administrative systems, cultural
                   expectations, social situations and everyday decisions at the same time.
                 </p>
-                <p className="mt-6 leading-relaxed text-muted-foreground">
+                <p className="mt-6 body-editorial text-muted-foreground">
                   The challenge explored by Belong is not simply “finding information.” It is a UX
                   and HCI problem of understanding — framed here as a design space, not a claim about
                   every international student.
@@ -373,7 +373,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
             <SectionHeader index="04" label="Research approach" title="Research plan" />
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Label>Research plan</Label>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm body-editorial text-muted-foreground">
                 Planned methods. These studies have not yet been conducted.
               </p>
             </div>
@@ -431,7 +431,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
                     <span className="label-mono text-accent">{String(i + 1).padStart(2, "0")}</span>
                     <div>
                       <h3 className="display-lg text-lg">{t}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{d}</p>
+                      <p className="mt-1 text-sm body-editorial text-muted-foreground">{d}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -457,7 +457,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
                     </li>
                   ))}
                 </ol>
-                <p className="mt-8 max-w-md leading-relaxed text-muted-foreground">
+                <p className="mt-8 max-w-md body-editorial text-muted-foreground">
                   Progressive disclosure allows the user to control the depth of information rather
                   than presenting one large wall of text.
                 </p>
@@ -504,7 +504,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
             <div className="mt-12 grid gap-16 lg:grid-cols-2">
               <div>
                 <h2 className="display-lg text-2xl uppercase">Community experience</h2>
-                <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
+                <p className="mt-4 max-w-md body-editorial text-muted-foreground">
                   Events expose group size, activity type, conversation level, duration, location
                   and access notes. The intention: make social expectations visible before
                   participation and keep interest reversible. This has not yet been validated.
@@ -517,7 +517,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
               </div>
               <div>
                 <h2 className="display-lg text-2xl uppercase">Support / escalation</h2>
-                <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">
+                <p className="mt-4 max-w-md body-editorial text-muted-foreground">
                   The design does not treat self-service as the end point. It deliberately helps the
                   user recognise when human support is appropriate.
                 </p>
@@ -542,7 +542,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
                 </li>
               ))}
             </ul>
-            <p className="mt-6 text-sm text-muted-foreground">
+            <p className="mt-6 text-sm body-editorial text-muted-foreground">
               No formal accessibility audit or compliance certification has been carried out.
             </p>
           </Shell>
@@ -584,7 +584,7 @@ export function BelongCaseStudy({ project, next }: { project: Project; next: Pro
                     {[t.h, t.o, t.d, t.i, t.e].map((c, i) => (
                       <p
                         key={c}
-                        className={`bg-paper p-4 text-sm leading-relaxed ${i === 0 ? "font-semibold" : ""} ${
+                        className={`bg-paper p-4 text-sm ${i === 0 ? "body-editorial font-semibold" : "body-editorial"} ${
                           i === 4 ? "text-accent" : ""
                         }`}
                       >

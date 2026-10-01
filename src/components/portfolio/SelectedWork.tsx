@@ -46,7 +46,7 @@ function WorkRow({ project, i }: { project: (typeof projects)[number]; i: number
             <h3 className="display-lg mt-3 text-[clamp(2rem,4.6vw,4rem)] uppercase leading-[0.9]">
               {project.title}
             </h3>
-            <p className="mt-4 max-w-sm text-muted-foreground">{project.description}</p>
+            <p className="mt-4 max-w-sm body-editorial text-muted-foreground">{project.description}</p>
             <p className="label-mono mt-6 text-muted-foreground">{project.category}</p>
             <span className="label-mono mt-6 inline-flex items-center gap-2 text-foreground">
               <span className="link-underline">Read case study</span>

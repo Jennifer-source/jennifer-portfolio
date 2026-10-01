@@ -52,7 +52,7 @@ export function MotionShowcase() {
                     <span className="label-mono text-accent">{s.n}</span>
                     <div className="min-w-0">
                       <p className="display-lg text-xl uppercase sm:text-2xl">{s.t}</p>
-                      <p className="mt-2 text-sm text-white/55">{s.d}</p>
+                      <p className="mt-2 text-sm body-editorial text-white/55">{s.d}</p>
                     </div>
                     <motion.span
                       aria-hidden
