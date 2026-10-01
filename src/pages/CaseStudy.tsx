@@ -6,6 +6,7 @@ import { Cursor } from "@/components/portfolio/Cursor";
 import { Footer } from "@/components/portfolio/Footer";
 import { BelongCaseStudy } from "@/components/portfolio/BelongCaseStudy";
 import { QuietInterfaceCaseStudy } from "@/components/portfolio/QuietInterfaceCaseStudy";
+import { HandsOfGraceCaseStudy } from "@/components/portfolio/HandsOfGraceCaseStudy";
 import {
   Reveal,
   RevealWords,
@@ -51,6 +52,7 @@ export default function CaseStudy() {
 
   if (project.id === "belong") return <BelongCaseStudy project={project} next={next} />;
   if (project.id === "quiet") return <QuietInterfaceCaseStudy project={project} next={next} />;
+  if (project.id === "grace") return <HandsOfGraceCaseStudy project={project} next={next} />;
 
   return <GenericCaseStudy projectId={project.id} />;
 }

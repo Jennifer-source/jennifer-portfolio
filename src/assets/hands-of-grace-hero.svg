@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1b8a7a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#22577a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#071f3f;stop-opacity:1" />
+    </linearGradient>
+    <filter id="heroNoise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" seed="2"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="15"/>
+    </filter>
+  </defs>
+  
+  <!-- Background gradient -->
+  <rect width="1920" height="1080" fill="url(#heroGrad)"/>
+  
+  <!-- Geometric shapes overlay -->
+  <circle cx="200" cy="150" r="180" fill="#c8942d" opacity="0.08" filter="url(#heroNoise)"/>
+  <circle cx="1800" cy="900" r="250" fill="#1b8a7a" opacity="0.06" filter="url(#heroNoise)"/>
+  <rect x="0" y="200" width="400" height="400" fill="#f1c15c" opacity="0.04" transform="rotate(25 200 400)"/>
+  
+  <!-- Subtle lines -->
+  <line x1="0" y1="300" x2="1920" y2="250" stroke="#ffffff" stroke-width="1" opacity="0.1"/>
+  <line x1="100" y1="0" x2="150" y2="1080" stroke="#ffffff" stroke-width="1" opacity="0.05"/>
+  <line x1="1800" y1="0" x2="1750" y2="1080" stroke="#ffffff" stroke-width="1" opacity="0.05"/>
+  
+  <!-- Hands/prayer element illustration -->
+  <g transform="translate(300, 400)">
+    <!-- Left hand -->
+    <path d="M 50 100 Q 40 60 30 40 Q 20 20 10 10" 
+          fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.15"/>
+    <!-- Right hand -->
+    <path d="M 150 100 Q 160 60 170 40 Q 180 20 190 10" 
+          fill="none" stroke="#ffffff" stroke-width="8" stroke-linecap="round" opacity="0.15"/>
+    <!-- Heart -->
+    <path d="M 100 80 C 90 70 75 70 70 82 C 65 92 75 110 100 135 C 125 110 135 92 130 82 C 125 70 110 70 100 80 Z" 
+          fill="#c8942d" opacity="0.2"/>
+  </g>
+  
+  <!-- Community/people silhouettes (light) -->
+  <g opacity="0.08">
+    <circle cx="500" cy="600" r="30" fill="#ffffff"/>
+    <path d="M 470 640 L 530 640 L 530 720 L 470 720 Z" fill="#ffffff"/>
+    
+    <circle cx="900" cy="550" r="35" fill="#ffffff"/>
+    <path d="M 860 595 L 940 595 L 940 700 L 860 700 Z" fill="#ffffff"/>
+    
+    <circle cx="1400" cy="650" r="32" fill="#ffffff"/>
+    <path d="M 1368 695 L 1432 695 L 1432 780 L 1368 780 Z" fill="#ffffff"/>
+  </g>
+  
+  <!-- Top light rays -->
+  <g opacity="0.08">
+    <line x1="960" y1="0" x2="900" y2="400" stroke="#ffffff" stroke-width="2"/>
+    <line x1="960" y1="0" x2="1020" y2="400" stroke="#ffffff" stroke-width="2"/>
+    <line x1="960" y1="0" x2="840" y2="450" stroke="#ffffff" stroke-width="1.5"/>
+    <line x1="960" y1="0" x2="1080" y2="450" stroke="#ffffff" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Subtle particles/dots -->
+  <g fill="#ffffff" opacity="0.06">
+    <circle cx="200" cy="300" r="3"/>
+    <circle cx="400" cy="200" r="2"/>
+    <circle cx="600" cy="900" r="2.5"/>
+    <circle cx="800" cy="150" r="2"/>
+    <circle cx="1200" cy="950" r="3"/>
+    <circle cx="1600" cy="400" r="2"/>
+    <circle cx="1800" cy="200" r="2.5"/>
+  </g>
+  
+  <!-- Bottom fade to transparent -->
+  <defs>
+    <linearGradient id="bottomFade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#000000;stop-opacity:0" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.2" />
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bottomFade)"/>
+</svg>
