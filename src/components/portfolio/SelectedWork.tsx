@@ -60,36 +60,29 @@ function WorkRow({ project, i }: { project: (typeof projects)[number]; i: number
 }
 
 /**
- * The three projects as an editorial index beside the headline — a table of
- * contents for the rows below. Reuses the existing label-mono / display-lg
- * language; red appears only as the top rule and the numerals.
+ * The three projects, listed in the gap that already existed beside the
+ * headline. On lg+ the list is placed inside that gap so the section's
+ * original geometry — headline size, position and spacing — is untouched.
  */
-function ProjectIndexEntry({ project }: { project: (typeof projects)[number] }) {
+function ProjectList() {
   return (
-    <li className="border-b border-hairline">
-      <Link
-        to={`/work/${project.slug}`}
-        data-cursor="View case"
-        className="group grid grid-cols-[2.5rem_1fr] items-baseline gap-x-5 py-6"
-      >
-        <span className="label-mono text-accent">{project.index}</span>
-        <div className="min-w-0">
-          <div className="flex items-baseline justify-between gap-4">
-            <h3 className="display-lg text-xl uppercase sm:text-2xl">{project.title}</h3>
-            <span
-              aria-hidden
-              className="label-mono text-muted-foreground transition-transform duration-500 group-hover:translate-x-1"
-            >
-              →
-            </span>
-          </div>
-          <p className="label-mono mt-2 text-muted-foreground">{project.category}</p>
-          <p className="mt-3 max-w-md text-sm font-mono leading-relaxed text-muted-foreground">
-            {project.positioning}
-          </p>
-        </div>
-      </Link>
-    </li>
+    <ul className="border-t border-hairline">
+      {projects.map((p) => (
+        <li key={p.id} className="border-b border-hairline">
+          <Link
+            to={`/work/${p.slug}`}
+            data-cursor="View case"
+            className="flex items-baseline gap-5 py-3"
+          >
+            <span className="label-mono text-accent">{p.index}</span>
+            <div className="min-w-0">
+              <h3 className="display-lg text-xl uppercase">{p.title}</h3>
+              <p className="label-mono mt-1 text-muted-foreground">{p.category}</p>
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -98,18 +91,17 @@ export function SelectedWork() {
     <section id="work" className="relative bg-paper py-24 sm:py-32">
       <Shell>
         <SectionHeader index="03" label="What I create" title="Selected work" />
-        <div className="grid lg:grid-cols-12 lg:gap-8">
-          <Reveal className="lg:col-span-7">
+        <div className="relative">
+          <Reveal>
             <h2 className="display-xl mt-10 max-w-[14ch] text-[clamp(2.2rem,6vw,5.5rem)]">
               Three projects, three different problems.
             </h2>
           </Reveal>
-          <Reveal delay={0.12} className="mt-10 lg:col-span-5 lg:col-start-8">
-            <ul className="border-t border-accent">
-              {projects.map((p) => (
-                <ProjectIndexEntry key={p.id} project={p} />
-              ))}
-            </ul>
+          <Reveal
+            delay={0.12}
+            className="mt-10 lg:absolute lg:right-0 lg:top-0 lg:mt-0 lg:w-[40%]"
+          >
+            <ProjectList />
           </Reveal>
         </div>
         <div className="mt-16">
