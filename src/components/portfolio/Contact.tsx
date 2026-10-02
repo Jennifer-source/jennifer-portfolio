@@ -4,11 +4,10 @@ import { Reveal, SectionHeader, Shell } from "./primitives";
 
 const socials = [
   { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "josephjenniferpari@gmail.com", href: "mailto:josephjenniferpari@gmail.com", lower: true },
   { label: "GitHub", href: "https://github.com" },
 ];
 
-const EMAIL = "hello@josephjennifer.design";
+const EMAIL = "josephjenniferpari@gmail.com";
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
@@ -37,7 +36,12 @@ export function Contact() {
               </span>
             </motion.a>
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              <span className="font-mono text-sm text-muted-foreground">{EMAIL}</span>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="font-mono text-sm text-muted-foreground"
+              >
+                {EMAIL}
+              </a>
               <button
                 type="button"
                 className="label-mono link-underline"
@@ -62,9 +66,7 @@ export function Contact() {
                       rel="noreferrer noopener"
                       className="group flex items-baseline justify-between py-4"
                     >
-                      <span className={`display-lg text-xl ${s.lower ? "" : "uppercase"}`}>
-                        {s.label}
-                      </span>
+                      <span className="display-lg text-xl uppercase">{s.label}</span>
                       <span className="label-mono text-muted-foreground transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-1">
                         ↗
                       </span>
