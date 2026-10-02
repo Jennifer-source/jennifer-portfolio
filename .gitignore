@@ -1,4 +1,8 @@
 .env.local
 node_modules
 dist
-src/convex/_generated
+
+# Convex generated code is committed on purpose.
+# `tsc -b` needs src/convex/_generated/* at build time, and the Convex CLI
+# cannot regenerate it in CI (it requires a live deployment and refuses
+# deploy keys), so the generated bindings must ship with the repo.
