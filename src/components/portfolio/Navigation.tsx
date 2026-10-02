@@ -5,7 +5,6 @@ import { EASE } from "./primitives";
 
 const links = [
   { id: "work", label: "Work" },
-  { id: "lab", label: "Experiments" },
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
 ];

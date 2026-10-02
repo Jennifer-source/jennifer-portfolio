@@ -1,4 +1,4 @@
-import heroPortrait from "@/assets/hero-portrait.jpg";
+import aboutPoster from "@/assets/work-typo.jpg";
 import { Reveal, RevealWords, SectionHeader, Shell } from "./primitives";
 
 const chapters = [
@@ -59,11 +59,11 @@ export function About() {
               <figure className="sticky top-28">
                 <div className="overflow-hidden bg-muted">
                   <img
-                    src={heroPortrait}
-                    alt="Portrait of Joseph Jennifer"
+                    src={aboutPoster}
+                    alt="Poster study — black ink, vermilion and paper white"
                     loading="lazy"
-                    width={1200}
-                    height={1504}
+                    width={1400}
+                    height={1000}
                     className="aspect-4/5 w-full object-cover"
                   />
                 </div>
