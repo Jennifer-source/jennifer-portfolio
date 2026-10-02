@@ -4,8 +4,7 @@ import { Reveal, SectionHeader, Shell } from "./primitives";
 
 const socials = [
   { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Behance", href: "https://behance.net" },
-  { label: "Instagram", href: "https://instagram.com" },
+  { label: "josephjenniferpari@gmail.com", href: "mailto:josephjenniferpari@gmail.com", lower: true },
   { label: "GitHub", href: "https://github.com" },
 ];
 
@@ -63,7 +62,9 @@ export function Contact() {
                       rel="noreferrer noopener"
                       className="group flex items-baseline justify-between py-4"
                     >
-                      <span className="display-lg text-xl uppercase">{s.label}</span>
+                      <span className={`display-lg text-xl ${s.lower ? "" : "uppercase"}`}>
+                        {s.label}
+                      </span>
                       <span className="label-mono text-muted-foreground transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-1">
                         ↗
                       </span>
